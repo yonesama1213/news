@@ -1,7 +1,13 @@
 {
-    "updated_at": "2026/02/26 18:17",
+    "updated_at": "2026/02/27 07:38",
     "categories": {
         "テクノロジー": [
+            {
+                "title": "米国株式市場＝反落、テクノロジー株が安い ダウは横ばい - Reuters",
+                "link": "https://news.google.com/rss/articles/CBMifEFVX3lxTE52ckgzVmNEYzlMWlRoTTFsZER6S2JDZjNtN2ZvOUVkX2VzZXJZWE9zOHNyd2lrTjZyVWpKTC1SaGdjV2xpRWNhMXd6WTg0aTdVYnduWVFndXRkUk1UdWhMTmdKZFV2d1lmYjF4RzlVWncwTDBJckk5Q2dlNFY?oc=5",
+                "source": "Reuters",
+                "summary": "要約の取得に失敗しました。"
+            },
             {
                 "title": "米国株式市場＝続伸、テクノロジー株主導 ＡＩ巡る懸念後退 - Reuters",
                 "link": "https://news.google.com/rss/articles/CBMifEFVX3lxTE5WYUdoUVFRcjc3cW9ZUGNLSTNEZ1NHMlF5N0hxMjk4NFNjMHk2WGN2aGViczlhSTVXSnRHcG9yLUtvRVB2dUxoTkpRY0l0czlkeFpfUmVUMTcwUUV5YnFGdjJzeXNOMFhfQUhBbFVRdXZJYW1hTXhudUM2cTM?oc=5",
@@ -9,29 +15,23 @@
                 "summary": "要約の取得に失敗しました。"
             },
             {
-                "title": "米国株式市場＝続伸、テクノロジー株主導 ＡＩ巡る懸念後退 - newsweekjapan.jp",
+                "title": "米国株式市場＝続伸、テクノロジー株主導 ＡＩ巡る懸念後退 - ニューズウィーク日本版 オフィシャルサイト",
                 "link": "https://news.google.com/rss/articles/CBMidEFVX3lxTFA2cm1GbEZWcTlGaFZDQ0dJOXVfd1RPMkFJSEJVTVVyU3g1ajEzVXV1TmNfd3JmREVLU3RtRDh2YVVLM0JqenY5QjZyU0pnZUhyOVpyTm00QTJ1SjFQV2NoRDRYejdrQndnb3N5dWo4d3puWWNt?oc=5",
-                "source": "newsweekjapan.jp",
-                "summary": "要約の取得に失敗しました。"
-            },
-            {
-                "title": "米国株式市場＝続伸、テクノロジー株主導　ＡＩ巡る懸念後退 - ｄメニューニュース",
-                "link": "https://news.google.com/rss/articles/CBMiggFBVV95cUxPeTdoNmtUa19IZXIwa3l2M2dIYmdjeEJvaHE5OUVGTXdLRnIxd0pkRlRYSEN4YzR1NVVqc01MWC1GM3JnNXh2cGQyVGdDV3EyYWlBNVdraDdHQ1dPenUtclExeEhROUdaTGs5UUdrUDZuclJKZEkxQjRaemFCZ2lpaWt30gGHAUFVX3lxTE8tOXFQWXNGX2Z2b2NERlYtMmZMRVJwWnNHbmROUzNoNzFIa3FYVEc5X19kZ3FDU3JYX3JnZG1PVGNyazJDZ1BsOW5hQmJMZXA5N0xaMERtODFVUVVfMkFJSU9FX2VLTnBqNVdiSWpxalM5WXRrT1hCNkVNWGdlSnY0SDByak5LZw?oc=5",
-                "source": "ｄメニューニュース",
+                "source": "ニューズウィーク日本版 オフィシャルサイト",
                 "summary": "要約の取得に失敗しました。"
             }
         ],
         "国内政治・社会": [
             {
-                "title": "韓国の社会分断深化が招く“国内政治のための外交”化 ―日韓関係や北東アジアの安全保障環境への影響を考える― - PwC",
-                "link": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQUy1jVjVybWdRTGNmM0tDYWhyemlhU3BLS0pKTXhHVzBWdVZIUE1IOXFxamg3TFZsRkJjUFNITXZGQjV4Z1Z5TTJLeHNMWkZDa2diUlo2M3d4V1ZqTGdrQVhTdDdVV253NG56ZzRtblk5aHZjcXJqWVVia3R3cjd0dC15b2U?oc=5",
-                "source": "PwC",
+                "title": "トランプ政権の政治と軍事（後編） ――市民社会と軍の関係：国内における軍の警察行動を巡る議論 - 笹川平和財団",
+                "link": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9wendaVG9RWURSVEowMFR4MXBSTDZ5aHRoaVJiQk5BSzd0M0x4YTRsV1o1bjZQNDhYVVlyMTRuXzVVMnpxbnBGTlltZ2J3NHk2U0lYakN0ZlhjN0owNFFHaQ?oc=5",
+                "source": "笹川平和財団",
                 "summary": "要約の取得に失敗しました。"
             },
             {
-                "title": "維新議員の保険料は､なぜ｢月数千円｣に?…｢国保逃れ｣の裏にある健保の赤字3782億円【日本ってどうなんですか会議No.18】 - PRESIDENT Online（プレジデントオンライン）",
-                "link": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE1ZV3hLUnJPSXBMMy15ZlhpWGN0eU5ndXV4U1lFQ2tWVkRJSHpOclhGM1B5X2VFME9ZWm5GZ21WeVN6WTRVQ0dteTl6LW14M1k?oc=5",
-                "source": "PRESIDENT Online（プレジデントオンライン）",
+                "title": "韓国の社会分断深化が招く“国内政治のための外交”化 ―日韓関係や北東アジアの安全保障環境への影響を考える― - PwC",
+                "link": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQUy1jVjVybWdRTGNmM0tDYWhyemlhU3BLS0pKTXhHVzBWdVZIUE1IOXFxamg3TFZsRkJjUFNITXZGQjV4Z1Z5TTJLeHNMWkZDa2diUlo2M3d4V1ZqTGdrQVhTdDdVV253NG56ZzRtblk5aHZjcXJqWVVia3R3cjd0dC15b2U?oc=5",
+                "source": "PwC",
                 "summary": "要約の取得に失敗しました。"
             },
             {
@@ -49,29 +49,29 @@
                 "summary": "要約の取得に失敗しました。"
             },
             {
-                "title": "動画（サイエンスチャンネル） 記事一覧 - Science Portal",
-                "link": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9taE8wZHBKQ29wS1ZMazNEc1J1Tkc0REMwdVhlbU40NU9YN05OSDJ1OFdZVHpPUzdqWFFwcjRRcGRlY2c4ZmpOeVQyOERNT3JZTDNzUF9mN2dhNGc?oc=5",
-                "source": "Science Portal",
-                "summary": "要約の取得に失敗しました。"
-            },
-            {
                 "title": "進化する気象業界、防災と環境・エネルギー分野を統合してさらなる貢献！ 日本気象協会訪問記[前編] - WWFジャパン",
                 "link": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE82MFZmclRzcGs4aDlEd1RlVWdEMEl1b1c2b0xMVjY4RnM4V3pGSDNWNVREbUR5ZUNsR3J3bWtMdUN5ZVduN2dTZUZLTzQ2b19zcWd1RDMtVGdhSUo2NXhn?oc=5",
                 "source": "WWFジャパン",
+                "summary": "要約の取得に失敗しました。"
+            },
+            {
+                "title": "「令和7年度ひろしま環境ビジネス推進協議会新規事業創出支援業務」にて成果報告会「DEMO DAY」を開催 - PR TIMES",
+                "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5FbEZrN2d0N2lRelBubmVNdmFMNjVNX1dtZ2RIMFpEbTRqaHY2ckU2LVlOQ0hLX2FSS0RvZ1dGUG1sdl85dXFvTjdQSV9aNDQ5cGdXRGRMQ2FRdExtdERjM25teUFRZWNJQmc?oc=5",
+                "source": "PR TIMES",
                 "summary": "要約の取得に失敗しました。"
             }
         ],
         "国際情勢": [
             {
-                "title": "《＃知事会見から》「国際情勢を注視し支援続けたい」 アメリカの代替関税発動で群馬・山本一太知事 - 上毛新聞電子版",
-                "link": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5sUlZxSXNEVU9JaUxhU1JUZFhSNzlQWXlyMzZETWI4blU5U2xwbDVMeHRZMlJyUmFxbEdVUkdWQVdKNml6N0otQ1J3aHh6SFk4UlY5bnJJaW8?oc=5",
-                "source": "上毛新聞電子版",
+                "title": "令和7年度（2025年度）国際情勢講演会 開催報告 共催：国連NGO国内女性委員会｜外務省 - mofa.go.jp",
+                "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTE9ObjB1eHdsZElJbktlcXhXVW1HbWY5dHJQUngxZ0NsZWhGcW1ZUGRlSk55SnBDS2NFUWFhOXhRWTFERkdqVnEzRjJORTgza2xLVVJLYWF4a0VwbVdpQnRNOFRVZ2RNcS1Uak1weG13?oc=5",
+                "source": "mofa.go.jp",
                 "summary": "要約の取得に失敗しました。"
             },
             {
-                "title": "令和7年度（2025年度）国際情勢講演会 開催報告 共催：日本国際連合協会秋田県本部｜外務省 - mofa.go.jp",
-                "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTE90cEtqT1hCWVlxNnhGdC1sZ3pGZVQ2MWdWMERodVhqVjlOWVE5Tm11V2tZcjN2LWJNYkRDMDVqM2F4cFJHTzlDYmppd2V0eUVLbFUydkFhbnU3RE9NOVU5Uk5WLUg5VDNEZnFYSG1R?oc=5",
-                "source": "mofa.go.jp",
+                "title": "《＃知事会見から》「国際情勢を注視し支援続けたい」 アメリカの代替関税発動で群馬・山本一太知事 - 上毛新聞電子版",
+                "link": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5sUlZxSXNEVU9JaUxhU1JUZFhSNzlQWXlyMzZETWI4blU5U2xwbDVMeHRZMlJyUmFxbEdVUkdWQVdKNml6N0otQ1J3aHh6SFk4UlY5bnJJaW8?oc=5",
+                "source": "上毛新聞電子版",
                 "summary": "要約の取得に失敗しました。"
             },
             {
@@ -83,21 +83,21 @@
         ],
         "キャリア・働き方": [
             {
+                "title": "今の仕事でいいのか――モヤモヤが晴れる転職の進め方【キャリアアドバイザーが指南】 - ダイヤモンド・オンライン",
+                "link": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE4xdmgtSXFBR2Qyd0U3SU11NXZ3MUJYQ1lZdnZSdHJZRmR6NzkwbVZMTHFKZFZVT2hsV2hBVjFwMlRIWDRjbFFpU3A3UG_SAU9BVV95cUxOZzBNZXVvdnZ3SC1kdTFRSmt5OXJrWlhGdmFNdm9DQVl4TVVaMUFSZWVsQzNsVzF0c1g3d3BPdUNnYmlMWHFaQTZkdThtdWo4?oc=5",
+                "source": "ダイヤモンド・オンライン",
+                "summary": "要約の取得に失敗しました。"
+            },
+            {
                 "title": "キャリア自律時代の到来 ― 社会人の42.6%が転職検討「会社にしがみつかない」働き方への転換が鮮明に - PR TIMES",
                 "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTE54Z2NUeDA2SGhfQmVDQTZVUHVDNVpJdThiWFhOWnAyb1B1MlNOWlBGdkJ3MlZLT09lWUpfX0xTUk1LT3hxbnZqeGxMbzl0TGRHWXAwUDduaUctTG80UGw2MEZCS0JLMkhGd1E?oc=5",
                 "source": "PR TIMES",
                 "summary": "要約の取得に失敗しました。"
             },
             {
-                "title": "働く女性の半数以上が感じる“キャリアの見えない壁”約6割がジャケットを「挑戦を支えるツール」と認識 - 繊研新聞",
-                "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPTWNzSHlBRG1kb29FUnFMLXVLaTBJZ2dkYVc1T2FIS196ZUJHX3RhWmxQZ1k5cUtSbTRzSkRJNm9iV2kyZERLendhcnRJSUo5ajNJMXl0ajZ1VFNrOEVBRlg4LVFKcWNyRF9qN0V6QmNXemMxaU9uQURVUnNpejdiQWVreFA0YmVBeXVqdDdKbk9BaXdrdWFMUzM2SHZ6OFhrYjkxS2hMNFEtWWJTQ1E?oc=5",
-                "source": "繊研新聞",
-                "summary": "要約の取得に失敗しました。"
-            },
-            {
-                "title": "【インターン・選考で“仕事とキャリア”を可視化する設計セミナー】総合職や派遣型は、学生に伝わらない？ - HRプロ",
-                "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTFB1dHc2aDNtcU5lVkUzSk51NEkzUllKeHJmV2szbV96dTNyVER3WEd3RXlnSzhfbkRtVGd5TU9WRjRzQ09TM2t1UWJnblUyYWExU05KcnF3R0d0OFE0ZC1sSXpvbXY0ZWVHbXdrQUFR?oc=5",
-                "source": "HRプロ",
+                "title": "働く女性の半数以上が感じる“キャリアの見えない壁”約6割がジャケットを「挑戦を支えるツール」と認識 - Digital PR Platform",
+                "link": "https://news.google.com/rss/articles/CBMiQ0FVX3lxTE94SzZTTzZwejJiZUpaWENrNnZtQWlRSmhJVkV5aUMyd2N4WlZ1ZTRNVmJQRU9VMGZmZE8xeVhadlZVaXM?oc=5",
+                "source": "Digital PR Platform",
                 "summary": "要約の取得に失敗しました。"
             }
         ]
