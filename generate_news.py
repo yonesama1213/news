@@ -4,7 +4,7 @@ import json
 import time
 import feedparser
 import urllib.parse
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 
 # --- 設定エリア ---
 # ご提示いただいた新しいAPIキーを直接書き込んでいます
@@ -17,10 +17,9 @@ def main():
     # 最新のGoogle Gen AI SDKを使用して接続
     client = genai.Client(api_key=MY_API_KEY)
     
-    results = {
-        "updated_at": datetime.now().strftime("%Y/%m/%d %H:%M"),
-        "categories": {}
-    }
+    jst = timezone(timedelta(hours=+9), 'JST')
+    now_jst = datetime.now(jst)
+    results = {"updated_at": now_jst.strftime("%Y/%m/%d %H:%M"), "categories": {}}
 
     for cat_name in CATEGORIES:
         print(f"検索中: {cat_name}...")
