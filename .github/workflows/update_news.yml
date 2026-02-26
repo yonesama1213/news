@@ -5,7 +5,7 @@ on:
     # 日本時間 7:30 (UTC 22:30) と 12:30 (UTC 03:30)
     - cron: '30 22 * * *'
     - cron: '30 3 * * *'
-  workflow_dispatch: # 手動実行ボタンを出す設定
+  workflow_dispatch: # 手動実行ボタン
 
 jobs:
   update:
@@ -17,13 +17,14 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.9'
+          # ★3.9は少し古いので、2026年現在の推奨である 3.11 に変更しました [cite: 2026-02-26]
+          python-version: '3.11'
 
       - name: Install dependencies
-        # ★ここを「|（縦棒）」を使って2行に分けるのが正解です
+        # ★縦棒 | の後のインデントを整理し、より確実な python -m pip 方式に統一しました [cite: 2026-02-26]
         run: |
           python -m pip install --upgrade pip
-          pip install feedparser google-genai
+          python -m pip install feedparser google-genai
 
       - name: Run generation script
         env:
