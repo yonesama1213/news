@@ -1,13 +1,7 @@
 {
-    "updated_at": "2026/02/27 07:38",
+    "updated_at": "2026/02/27 07:59",
     "categories": {
         "テクノロジー": [
-            {
-                "title": "米国株式市場＝反落、テクノロジー株が安い ダウは横ばい - Reuters",
-                "link": "https://news.google.com/rss/articles/CBMifEFVX3lxTE52ckgzVmNEYzlMWlRoTTFsZER6S2JDZjNtN2ZvOUVkX2VzZXJZWE9zOHNyd2lrTjZyVWpKTC1SaGdjV2xpRWNhMXd6WTg0aTdVYnduWVFndXRkUk1UdWhMTmdKZFV2d1lmYjF4RzlVWncwTDBJckk5Q2dlNFY?oc=5",
-                "source": "Reuters",
-                "summary": "要約の取得に失敗しました。"
-            },
             {
                 "title": "米国株式市場＝続伸、テクノロジー株主導 ＡＩ巡る懸念後退 - Reuters",
                 "link": "https://news.google.com/rss/articles/CBMifEFVX3lxTE5WYUdoUVFRcjc3cW9ZUGNLSTNEZ1NHMlF5N0hxMjk4NFNjMHk2WGN2aGViczlhSTVXSnRHcG9yLUtvRVB2dUxoTkpRY0l0czlkeFpfUmVUMTcwUUV5YnFGdjJzeXNOMFhfQUhBbFVRdXZJYW1hTXhudUM2cTM?oc=5",
@@ -15,19 +9,19 @@
                 "summary": "要約の取得に失敗しました。"
             },
             {
-                "title": "米国株式市場＝続伸、テクノロジー株主導 ＡＩ巡る懸念後退 - ニューズウィーク日本版 オフィシャルサイト",
-                "link": "https://news.google.com/rss/articles/CBMidEFVX3lxTFA2cm1GbEZWcTlGaFZDQ0dJOXVfd1RPMkFJSEJVTVVyU3g1ajEzVXV1TmNfd3JmREVLU3RtRDh2YVVLM0JqenY5QjZyU0pnZUhyOVpyTm00QTJ1SjFQV2NoRDRYejdrQndnb3N5dWo4d3puWWNt?oc=5",
-                "source": "ニューズウィーク日本版 オフィシャルサイト",
+                "title": "米国株式市場＝反落、テクノロジー株が安い ダウは横ばい - Reuters",
+                "link": "https://news.google.com/rss/articles/CBMifEFVX3lxTE52ckgzVmNEYzlMWlRoTTFsZER6S2JDZjNtN2ZvOUVkX2VzZXJZWE9zOHNyd2lrTjZyVWpKTC1SaGdjV2xpRWNhMXd6WTg0aTdVYnduWVFndXRkUk1UdWhMTmdKZFV2d1lmYjF4RzlVWncwTDBJckk5Q2dlNFY?oc=5",
+                "source": "Reuters",
+                "summary": "要約の取得に失敗しました。"
+            },
+            {
+                "title": "【材料】 テクノロジーは後場急騰で一時Ｓ高、ＳａａＳ製品「Ｃｉｒｃｌｅ」を中外薬が導入 - かぶたん",
+                "link": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5sdGY3MkpneGNKZ01GdnlXcWIyUHByZjdTV21CQXFBWkJDZERnaGFqdWhsbVZWX2FHODNBN0ZmMUM1ZGU2bk50MmdOS29SNVFfNkNzWHNxdjFiMlc0ZzhpWQ?oc=5",
+                "source": "かぶたん",
                 "summary": "要約の取得に失敗しました。"
             }
         ],
         "国内政治・社会": [
-            {
-                "title": "トランプ政権の政治と軍事（後編） ――市民社会と軍の関係：国内における軍の警察行動を巡る議論 - 笹川平和財団",
-                "link": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9wendaVG9RWURSVEowMFR4MXBSTDZ5aHRoaVJiQk5BSzd0M0x4YTRsV1o1bjZQNDhYVVlyMTRuXzVVMnpxbnBGTlltZ2J3NHk2U0lYakN0ZlhjN0owNFFHaQ?oc=5",
-                "source": "笹川平和財団",
-                "summary": "要約の取得に失敗しました。"
-            },
             {
                 "title": "韓国の社会分断深化が招く“国内政治のための外交”化 ―日韓関係や北東アジアの安全保障環境への影響を考える― - PwC",
                 "link": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQUy1jVjVybWdRTGNmM0tDYWhyemlhU3BLS0pKTXhHVzBWdVZIUE1IOXFxamg3TFZsRkJjUFNITXZGQjV4Z1Z5TTJLeHNMWkZDa2diUlo2M3d4V1ZqTGdrQVhTdDdVV253NG56ZzRtblk5aHZjcXJqWVVia3R3cjd0dC15b2U?oc=5",
@@ -38,6 +32,12 @@
                 "title": "戦死者慰霊から見る東アジア【社会科学研究科】 – 早稲田ウィークリー - waseda.jp",
                 "link": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1RbDZPOE5aTTA5Njh2SDB3dDVTU0xhdTJCNnZlZUxpUUhaZWgtNnVQUXg2TTVnOVBzVUNKTzBfbjNWTmxJa3JoMmxDcmRfX1ZleDNKaUJETlR3aEZtc21YR25LR0F6RVE?oc=5",
                 "source": "waseda.jp",
+                "summary": "要約の取得に失敗しました。"
+            },
+            {
+                "title": "政治社会学者・堀内進之介さんに聞くコロナ禍 私権制限と自粛の間で - 朝日新聞",
+                "link": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBCWnNNeFR1UW5DUkZMa3FHMmdyRU9zazdpQUd4TllhZVRfOGpaNHhGV0JxZVlRZHh6Qk4yelYxcTJhRjRlU0FsaXduOEljV3hKSGg2NE1qQmlscktZc25FMy1HTXduazQ?oc=5",
+                "source": "朝日新聞",
                 "summary": "要約の取得に失敗しました。"
             }
         ],
