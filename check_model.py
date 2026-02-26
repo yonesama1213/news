@@ -1,12 +1,10 @@
-import google.generativeai as genai
+from google import genai
+import os
 
-# あなたのキーをここに入れる
-genai.configure(api_key="AIzaSyAJjhF6B0CjJlnvFFMlpaNzluIilcQpjnM")
+# 直接書き込んだキー、または環境変数から取得
+api_key = "AIzaSyAe-_rEHe5VGbogwMlYm6cNpWdVMTMhMlA" 
+client = genai.Client(api_key=api_key)
 
-print("--- 利用可能なモデル一覧 ---")
-try:
-    for m in genai.list_models():
-        if 'generateContent' in m.supported_generation_methods:
-            print(m.name)
-except Exception as e:
-    print(f"エラーが発生しました: {e}")
+print("利用可能なモデル一覧:")
+for model in client.models.list():
+    print(f" - {model.name}")

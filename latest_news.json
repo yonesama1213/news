@@ -1,4 +1,85 @@
 {
-    "updated_at": "2026/02/26 16:44",
-    "categories": {}
+    "updated_at": "2026/02/26 17:29",
+    "categories": {
+        "テクノロジー": [
+            {
+                "title": "米国株式市場＝続伸、テクノロジー株主導 ＡＩ巡る懸念後退 - Reuters",
+                "link": "https://news.google.com/rss/articles/CBMifEFVX3lxTE5WYUdoUVFRcjc3cW9ZUGNLSTNEZ1NHMlF5N0hxMjk4NFNjMHk2WGN2aGViczlhSTVXSnRHcG9yLUtvRVB2dUxoTkpRY0l0czlkeFpfUmVUMTcwUUV5YnFGdjJzeXNOMFhfQUhBbFVRdXZJYW1hTXhudUM2cTM?oc=5",
+                "source": "Reuters",
+                "summary": "・米国株式市場が続伸\n・テクノロジー株が主導\n・AI巡る懸念が後退"
+            },
+            {
+                "title": "米国株式市場＝続伸、テクノロジー株主導 ＡＩ巡る懸念後退 - ニューズウィーク日本版 オフィシャルサイト",
+                "link": "https://news.google.com/rss/articles/CBMidEFVX3lxTFA2cm1GbEZWcTlGaFZDQ0dJOXVfd1RPMkFJSEJVTVVyU3g1ajEzVXV1TmNfd3JmREVLU3RtRDh2YVVLM0JqenY5QjZyU0pnZUhyOVpyTm00QTJ1SjFQV2NoRDRYejdrQndnb3N5dWo4d3puWWNt?oc=5",
+                "source": "ニューズウィーク日本版 オフィシャルサイト",
+                "summary": "・米国株式市場は続伸した。\n・テクノロジー株が市場を主導した。\n・AIを巡る懸念が後退した。"
+            },
+            {
+                "title": "米国株式市場＝続伸、テクノロジー株主導　ＡＩ巡る懸念後退 - ｄメニューニュース",
+                "link": "https://news.google.com/rss/articles/CBMiggFBVV95cUxPeTdoNmtUa19IZXIwa3l2M2dIYmdjeEJvaHE5OUVGTXdLRnIxd0pkRlRYSEN4YzR1NVVqc01MWC1GM3JnNXh2cGQyVGdDV3EyYWlBNVdraDdHQ1dPenUtclExeEhROUdaTGs5UUdrUDZuclJKZEkxQjRaemFCZ2lpaWt30gGHAUFVX3lxTE8tOXFQWXNGX2Z2b2NERlYtMmZMRVJwWnNHbmROUzNoNzFIa3FYVEc5X19kZ3FDU3JYX3JnZG1PVGNyazJDZ1BsOW5hQmJMZXA5N0xaMERtODFVUVVfMkFJSU9FX2VLTnBqNVdiSWpxalM5WXRrT1hCNkVNWGdlSnY0SDByak5LZw?oc=5",
+                "source": "ｄメニューニュース",
+                "summary": "・米国株式市場が続伸\n・テクノロジー株が主導\n・AI巡る懸念が後退"
+            }
+        ],
+        "国内政治・社会": [
+            {
+                "title": "韓国の社会分断深化が招く“国内政治のための外交”化 ―日韓関係や北東アジアの安全保障環境への影響を考える― - PwC",
+                "link": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQUy1jVjVybWdRTGNmM0tDYWhyemlhU3BLS0pKTXhHVzBWdVZIUE1IOXFxamg3TFZsRkJjUFNITXZGQjV4Z1Z5TTJLeHNMWkZDa2diUlo2M3d4V1ZqTGdrQVhTdDdVV253NG56ZzRtblk5aHZjcXJqWVVia3R3cjd0dC15b2U?oc=5",
+                "source": "PwC",
+                "summary": "・韓国社会の分断深化が進行\n・外交が国内政治利用の手段と化している\n・日韓関係や北東アジアの安保環境に悪影響を及ぼす懸念"
+            },
+            {
+                "title": "維新議員の保険料は､なぜ｢月数千円｣に?…｢国保逃れ｣の裏にある健保の赤字3782億円【日本ってどうなんですか会議No.18】 - PRESIDENT Online（プレジデントオンライン）",
+                "link": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE1ZV3hLUnJPSXBMMy15ZlhpWGN0eU5ndXV4U1lFQ2tWVkRJSHpOclhGM1B5X2VFME9ZWm5GZ21WeVN6WTRVQ0dteTl6LW14M1k?oc=5",
+                "source": "PRESIDENT Online（プレジデントオンライン）",
+                "summary": "・維新議員の国民健康保険料が月数千円と安価であることに疑問が呈されている。\n・これは「国保逃れ」として問題視されており、制度の抜け穴が指摘されている。\n・背景には健康保険全体で3782億円もの赤字があり、医療保険制度の構造的問題が浮き彫りになっている。"
+            },
+            {
+                "title": "戦死者慰霊から見る東アジア【社会科学研究科】 – 早稲田ウィークリー - waseda.jp",
+                "link": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1RbDZPOE5aTTA5Njh2SDB3dDVTU0xhdTJCNnZlZUxpUUhaZWgtNnVQUXg2TTVnOVBzVUNKTzBfbjNWTmxJa3JoMmxDcmRfX1ZleDNKaUJETlR3aEZtc21YR25LR0F6RVE?oc=5",
+                "source": "waseda.jp",
+                "summary": "・戦死者慰霊を主要テーマとしている。\n・慰霊という視点から東アジアの状況を考察する。\n・早稲田大学社会科学研究科による研究・見解である。"
+            }
+        ],
+        "環境・エネルギー": [
+            {
+                "title": "動画（サイエンスチャンネル） 記事一覧 - Science Portal",
+                "link": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9taE8wZHBKQ29wS1ZMazNEc1J1Tkc0REMwdVhlbU40NU9YN05OSDJ1OFdZVHpPUzdqWFFwcjRRcGRlY2c4ZmpOeVQyOERNT3JZTDNzUF9mN2dhNGc?oc=5",
+                "source": "Science Portal",
+                "summary": "・Science Portalのコンテンツである。\n・サイエンスチャンネルの動画を扱っている。\n・その動画記事の一覧である。"
+            },
+            {
+                "title": "進化する気象業界、防災と環境・エネルギー分野を統合してさらなる貢献！ 日本気象協会訪問記[前編] - WWFジャパン",
+                "link": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE82MFZmclRzcGs4aDlEd1RlVWdEMEl1b1c2b0xMVjY4RnM4V3pGSDNWNVREbUR5ZUNsR3J3bWtMdUN5ZVduN2dTZUZLTzQ2b19zcWd1RDMtVGdhSUo2NXhn?oc=5",
+                "source": "WWFジャパン",
+                "summary": "・気象業界は進化を遂げている。\n・防災、環境、エネルギー分野の統合を進めている。\n・社会へのさらなる貢献を目指す。"
+            },
+            {
+                "title": "「令和7年度ひろしま環境ビジネス推進協議会新規事業創出支援業務」にて成果報告会「DEMO DAY」を開催 - PR TIMES",
+                "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5FbEZrN2d0N2lRelBubmVNdmFMNjVNX1dtZ2RIMFpEbTRqaHY2ckU2LVlOQ0hLX2FSS0RvZ1dGUG1sdl85dXFvTjdQSV9aNDQ5cGdXRGRMQ2FRdExtdERjM25teUFRZWNJQmc?oc=5",
+                "source": "PR TIMES",
+                "summary": "・「DEMO DAY」が開催。\n・「ひろしま環境ビジネス推進協議会」の成果報告会。\n・令和7年度新規事業創出支援業務の成果を報告。"
+            }
+        ],
+        "国際情勢": [
+            {
+                "title": "《＃知事会見から》「国際情勢を注視し支援続けたい」 アメリカの代替関税発動で群馬・山本一太知事 - 上毛新聞電子版",
+                "link": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5sUlZxSXNEVU9JaUxhU1JUZFhSNzlQWXlyMzZETWI4blU5U2xwbDVMeHRZMlJyUmFxbEdVUkdWQVdKNml6N0otQ1J3aHh6SFk4UlY5bnJJaW8?oc=5",
+                "source": "上毛新聞電子版",
+                "summary": "・アメリカの代替関税発動が背景。\n・群馬県の山本一太知事が国際情勢を注視。\n・知事は支援を継続する意向を表明。"
+            },
+            {
+                "title": "令和7年度（2025年度）国際情勢講演会 開催報告 共催：日本国際連合協会秋田県本部｜外務省 - mofa.go.jp",
+                "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTE90cEtqT1hCWVlxNnhGdC1sZ3pGZVQ2MWdWMERodVhqVjlOWVE5Tm11V2tZcjN2LWJNYkRDMDVqM2F4cFJHTzlDYmppd2V0eUVLbFUydkFhbnU3RE9NOVU5Uk5WLUg5VDNEZnFYSG1R?oc=5",
+                "source": "mofa.go.jp",
+                "summary": "・令和7年度（2025年度）国際情勢講演会が開催。\n・講演会の開催報告として外務省が公開。\n・日本国際連合協会秋田県本部と外務省の共催。"
+            },
+            {
+                "title": "難しい国際情勢の中でも… 企業と商社をマッチング【愛媛】（eat愛媛朝日テレビ） - Yahoo!ニュース",
+                "link": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBoZ2pxRVctVVVqMmMyOFp6Nzhobi0xTlFjU1RvTHJGei1kODVPY0NjUWRtUV91eU0yeFdDTWk1VnFQWkZlUFNtaFI5V3RFTllRem1od1U1TTBQRFB2MjhvVHZxY2J0ay1RXy0ySjRNUS1HRDA0aXhNcXA3R1RlcTQ?oc=5",
+                "source": "Yahoo!ニュース",
+                "summary": "・愛媛で企業と商社をマッチング\n・厳しい国際情勢下での取り組み\n・ビジネス連携を促進する試み"
+            }
+        ]
+    }
 }
