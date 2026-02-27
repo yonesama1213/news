@@ -13,10 +13,26 @@ model = genai.GenerativeModel('gemini-1.5-flash')
 
 def get_news(category):
     url = f"https://newsapi.org/v2/top-headlines?country=jp&category={category}&pageSize=2&apiKey={NEWS_API_KEY}"
+    articles = requests.get(url).json().get('articles', [])
     return requests.get(url).json().get('articles', [])
 
 def summarize_article(article):
-    prompt = f"以下のニュースを3文で要約し、専門用語を最大3つ抽出して解説してください。必ずJSON形式 {{'summary': '...', 'glossary': [{{'word': '...', 'def': '...'}}]}} で返して。タイトル: {article['title']} 内容: {article.get('description', '')}"
+    # 'pageSize=5' に増やして、ヒットする確率を上げます
+    url = f"https://newsapi.org/v2/top-headlines?country=jp&category={category}&pageSize=5&apiKey={NEWS_API_KEY}"
+    articles = requests.get(url).json().get('articles', [])
+    # 記事が全くないカテゴリを避けるため、中身があるものだけ返す
+    return articles
+
+def summarize_article(article):
+    # description が空の場合は title を代わりに使うように修正
+    content_text = article.get('description') or article.get('title') or "内容なし"
+    
+    prompt = f"""
+    以下のニュースを3文で要約し、専門用語を最大3つ抽出して解説してください。
+    必ずJSON形式で返して。
+    タイトル: {article['title']}
+    内容: {content_text}
+    """
     try:
         response = model.generate_content(prompt)
         # Geminiの返答からJSON部分だけを抽出
