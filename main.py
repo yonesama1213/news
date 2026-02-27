@@ -12,7 +12,7 @@ def get_news(category):
         return []
 
     # カテゴリなしの「日本全体のトップニュース」を取得するように一時的に変更
-    url = f"https://newsapi.org/v2/top-headlines?country=jp&apiKey={NEWS_API_KEY}"
+    url = f"https://newsapi.org/v2/everything?q=ニュース&language=jp&pageSize=5&sortBy=publishedAt&apiKey={NEWS_API_KEY}"
     
     try:
         response = requests.get(url)
