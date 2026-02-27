@@ -1,38 +1,69 @@
 import requests
 import google.generativeai as genai
 import os
+import json
 
-# --- 設定（本来は環境変数を使いますが、まずは直接入力でテスト） ---
-NEWS_API_KEY = "8f420153afc4432383558764541310d4"
-GEMINI_API_KEY = "AIzaSyAJQshLjJQfEqRvbT9S-ITrT3GrSYbxKVI"
+# 設定（GitHub ActionsのSecretsから読み込む）
+NEWS_API_KEY = os.getenv("NEWS_API_KEY")
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
-# Geminiの設定
 genai.configure(api_key=GEMINI_API_KEY)
 model = genai.GenerativeModel('gemini-1.5-flash')
 
 def get_news(category):
     url = f"https://newsapi.org/v2/top-headlines?country=jp&category={category}&pageSize=2&apiKey={NEWS_API_KEY}"
-    response = requests.get(url)
-    return response.json().get('articles', [])
+    return requests.get(url).json().get('articles', [])
 
-def summarize_article(title, description):
-    prompt = f"""
-    以下のニュースを3文で要約し、専門用語を最大3つ抽出して解説してください。
-    必ず以下の形式のJSONで出力して：
-    {{"summary": "要約文", "glossary": [{{"word": "単語", "def": "解説"}}]}}
+def summarize_article(article):
+    prompt = f"以下のニュースを3文で要約し、専門用語を最大3つ抽出して解説してください。必ずJSON形式 {{'summary': '...', 'glossary': [{{'word': '...', 'def': '...'}}]}} で返して。タイトル: {article['title']} 内容: {article.get('description', '')}"
+    try:
+        response = model.generate_content(prompt)
+        # Geminiの返答からJSON部分だけを抽出
+        text = response.text.replace('```json', '').replace('```', '').strip()
+        return json.loads(text)
+    except:
+        return {"summary": "要約に失敗しました。", "glossary": []}
 
-    タイトル: {title}
-    内容: {description}
-    """
-    response = model.generate_content(prompt)
-    return response.text
+# ニュース取得と要約
+categories = {"general": "国内・世界", "technology": "テクノロジー", "business": "ビジネス", "science": "教育・科学"}
+html_content = ""
 
-# 実行
-categories = ["general", "technology", "business", "science"]
-for cat in categories:
-    print(f"--- カテゴリ: {cat} ---")
-    articles = get_news(cat)
+for cat_id, cat_name in categories.items():
+    articles = get_news(cat_id)
+    html_content += f"<h2>{cat_name}</h2>"
     for art in articles:
-        summary_json = summarize_article(art['title'], art['description'])
-        print(f"タイトル: {art['title']}")
-        print(f"AI要約: {summary_json}\n")
+        data = summarize_article(art)
+        summary = data['summary']
+        # 専門用語にポップアップを仕込む
+        for g in data['glossary']:
+            summary = summary.replace(g['word'], f'<span class="term" title="{g["def"]}">{g["word"]}</span>')
+        
+        html_content += f"""
+        <div class="card">
+            <h3><a href="{art['url']}">{art['title']}</a></h3>
+            <p>{summary}</p>
+        </div>"""
+
+# index.htmlを作成
+template = f"""
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>マイニュース要約</title>
+    <style>
+        body {{ font-family: sans-serif; max-width: 800px; margin: auto; padding: 20px; background: #f0f2f5; }}
+        .card {{ background: white; padding: 15px; margin-bottom: 10px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }}
+        .term {{ color: #007bff; border-bottom: 1px dotted #007bff; cursor: help; font-weight: bold; }}
+    </style>
+</head>
+<body>
+    <h1>📰 最新ニュース要約</h1>
+    {html_content}
+    <p style="font-size: 0.8em;">更新: {requests.get('https://worldtimeapi.org/api/timezone/Asia/Tokyo').json()['datetime']}</p>
+</body>
+</html>
+"""
+
+with open("index.html", "w", encoding="utf-8") as f:
+    f.write(template)

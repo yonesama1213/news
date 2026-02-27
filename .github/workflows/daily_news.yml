@@ -1,12 +1,14 @@
 name: Daily News Summary
 on:
   schedule:
-    - cron: '0 0 * * *' # 毎日朝9時(日本時間)に実行
-  workflow_dispatch: # 手動実行ボタンも追加
+    - cron: '0 0 * * *'
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # GitHubにファイルを書き込む許可
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python
@@ -20,3 +22,10 @@ jobs:
           NEWS_API_KEY: ${{ secrets.NEWS_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python main.py
+      - name: Commit and Push # 生成されたindex.htmlを保存
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add index.html
+          git commit -m "Update news summary" || exit 0
+          git push
