@@ -1,53 +1,64 @@
 import requests
+import google.generativeai as genai
 import os
+import json
 from datetime import datetime, timedelta, timezone
 
-# 設定（GitHubのSecretsから読み込む）
+# APIキーの設定
 NEWS_API_KEY = os.getenv("NEWS_API_KEY")
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
-def get_news(category):
-    # APIキーが入っているかチェック
-    if not NEWS_API_KEY:
-        print(f"⚠️ エラー: NEWS_API_KEY が読み込めていません！")
-        return []
+genai.configure(api_key=GEMINI_API_KEY)
+model = genai.GenerativeModel('gemini-1.5-flash')
 
-    # カテゴリなしの「日本全体のトップニュース」を取得するように一時的に変更
-    url = f"https://newsapi.org/v2/everything?q=ニュース&language=jp&pageSize=5&sortBy=publishedAt&apiKey={NEWS_API_KEY}"
-    
+def get_news(category_query):
+    # 先ほど成功した everything エンドポイントを使って、カテゴリに関連する単語で検索します
+    url = f"https://newsapi.org/v2/everything?q={category_query}&language=ja&pageSize=1&sortBy=relevancy&apiKey={NEWS_API_KEY}"
+    response = requests.get(url)
+    return response.json().get('articles', [])
+
+def summarize_with_gemini(article):
+    prompt = f"""
+    以下のニュースを3文で要約し、専門用語を最大3つ抽出して解説してください。
+    必ず以下のJSON形式のみで返答してください。
+    {{"summary": "要約文1。要約文2。要約文3。", "glossary": [{{"word": "単語", "def": "解説"}}]}}
+
+    タイトル: {article['title']}
+    内容: {article.get('description', '') or article['title']}
+    """
     try:
-        response = requests.get(url)
-        data = response.json()
+        response = model.generate_content(prompt)
+        # JSON部分だけを抽出する安全な処理
+        text = response.text
+        start = text.find('{')
+        end = text.rfind('}') + 1
+        clean_json = text[start:end]
+        return json.loads(clean_json)
+    except:
+        return {"summary": "要約に失敗しました。", "glossary": []}
+
+# --- メイン処理 ---
+categories = {"日本 政治": "国内情勢", "世界 ニュース": "世界情勢", "最新技術": "テクノロジー"}
+html_all = ""
+
+for query, label in categories.items():
+    articles = get_news(query)
+    if articles:
+        art = articles[0] # 各カテゴリのトップ1記事
+        ai_data = summarize_with_gemini(art)
         
-        # GitHub ActionsのログにAPIの反応を詳しく出す
-        print(f"--- API Response Log ---")
-        print(f"Status Code: {response.status_code}")
-        print(f"API Status: {data.get('status')}")
+        summary = ai_data['summary']
+        for g in ai_data['glossary']:
+            # 用語をポップアップ（title属性）付きのタグに変換
+            summary = summary.replace(g['word'], f'<span class="term" title="{g["def"]}" style="color:blue; cursor:help; border-bottom:1px dotted;">{g["word"]}</span>')
         
-        if data.get("status") == "error":
-            print(f"❌ APIエラーメッセージ: {data.get('message')}")
-            return []
-            
-        articles = data.get('articles', [])
-        print(f"✅ 取得できた記事数: {len(articles)}")
-        return articles
-
-    except Exception as e:
-        print(f"❌ 通信エラーが発生しました: {e}")
-        return []
-
-# ニュース取得（カテゴリを問わず、まずは記事が出るか試す）
-articles = get_news("all")
-html_content = ""
-
-if not articles:
-    html_content = "<p style='color:red;'>【致命的】記事が1件も取得できませんでした。APIキーの設定や制限を確認してください。</p>"
-else:
-    for art in articles:
-        html_content += f"""
-        <div style="background:white; padding:10px; border-radius:5px; margin-bottom:10px;">
-            <h3><a href="{art['url']}">{art['title']}</a></h3>
-            <p>公開日時: {art.get('publishedAt')}</p>
-        </div>"""
+        html_all += f"""
+        <div style="background:white; padding:15px; margin-bottom:20px; border-radius:10px; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
+            <small>{label}</small>
+            <h2><a href="{art['url']}" target="_blank">{art['title']}</a></h2>
+            <p>{summary}</p>
+        </div>
+        """
 
 # 日本時間
 JST = timezone(timedelta(hours=+9), 'JST')
@@ -56,11 +67,11 @@ now = datetime.now(JST).strftime('%Y-%m-%d %H:%M:%S')
 template = f"""
 <!DOCTYPE html>
 <html>
-<head><meta charset="UTF-8"><title>デバッグ表示</title></head>
-<body style="background:#f0f2f5; font-family:sans-serif; padding:20px;">
-    <h1>🔍 NewsAPI 接続テスト</h1>
-    <p>実行時刻: {now}</p>
-    <div id="news-container">{html_content}</div>
+<head><meta charset="UTF-8"><title>AIニュース要約</title></head>
+<body style="background:#f0f2f5; font-family:sans-serif; padding:20px; max-width:700px; margin:auto;">
+    <h1>📰 AIニュース要約（テスト版）</h1>
+    <p>最終更新: {now}</p>
+    {html_all}
 </body>
 </html>
 """
