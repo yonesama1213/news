@@ -1,6 +1,10 @@
 import requests
 import os
 from datetime import datetime, timedelta, timezone
+if NEWS_API_KEY:
+    print(f"使用中のキー: {NEWS_API_KEY[:3]}...{NEWS_API_KEY[-3:]}")
+else:
+    print("⚠️ NEWS_API_KEY が設定されていません")
 
 NEWS_API_KEY = os.getenv("NEWS_API_KEY")
 
