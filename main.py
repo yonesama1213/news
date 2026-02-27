@@ -10,7 +10,11 @@ def get_news(category):
     url = f"https://newsapi.org/v2/top-headlines?country=jp&category={category}&pageSize=5&apiKey={NEWS_API_KEY}"
     response = requests.get(url)
     data = response.json()
-    
+
+    print(f"DEBUG [{category}]: status={data.get('status')}, total={data.get('totalResults')}")
+    if data.get("status") != "ok":
+        print(f"ERROR MESSAGE: {data.get('message')}")
+
     # APIのレスポンスが正しいかチェック
     if data.get("status") != "ok":
         print(f"API Error in {category}: {data.get('message')}")
