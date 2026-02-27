@@ -121,4 +121,13 @@ template = f"""
 <body>
     <div class="container">
         <h1>📰 AI News Summarizer</h1>
-        <p class="update-time">
+        <p class="update-time">最終更新（日本時間）: {now}</p>
+        {html_content}
+        <footer>© 2026 AI News Project - Powered by Google News RSS & Gemini API</footer>
+    </div>
+</body>
+</html>
+"""
+
+with open("index.html", "w", encoding="utf-8") as f:
+    f.write(template)
