@@ -21,7 +21,7 @@ jobs:
         env:
           NEWS_API_KEY: ${{ secrets.NEWS_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: python main.py
+        run: python main2.py
       - name: Commit and Push # 生成されたindex.htmlを保存
         run: |
           git config --local user.email "action@github.com"
