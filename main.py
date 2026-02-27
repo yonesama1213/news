@@ -2,65 +2,65 @@ import requests
 import os
 from datetime import datetime, timedelta, timezone
 
-# 設定（NewsAPIキーのみ使用）
+# 設定（GitHubのSecretsから読み込む）
 NEWS_API_KEY = os.getenv("NEWS_API_KEY")
 
 def get_news(category):
-    # 日本のニュースを取得
-    url = f"https://newsapi.org/v2/top-headlines?country=jp&category={category}&pageSize=5&apiKey={NEWS_API_KEY}"
-    response = requests.get(url)
-    data = response.json()
-
-    print(f"DEBUG [{category}]: status={data.get('status')}, total={data.get('totalResults')}")
-    if data.get("status") != "ok":
-        print(f"ERROR MESSAGE: {data.get('message')}")
-
-    # APIのレスポンスが正しいかチェック
-    if data.get("status") != "ok":
-        print(f"API Error in {category}: {data.get('message')}")
+    # APIキーが入っているかチェック
+    if not NEWS_API_KEY:
+        print(f"⚠️ エラー: NEWS_API_KEY が読み込めていません！")
         return []
-        
-    return data.get('articles', [])
 
-# ニュース取得
-categories = {"general": "国内・世界", "technology": "テクノロジー", "business": "ビジネス", "science": "教育・科学"}
+    # カテゴリなしの「日本全体のトップニュース」を取得するように一時的に変更
+    url = f"https://newsapi.org/v2/top-headlines?country=jp&apiKey={NEWS_API_KEY}"
+    
+    try:
+        response = requests.get(url)
+        data = response.json()
+        
+        # GitHub ActionsのログにAPIの反応を詳しく出す
+        print(f"--- API Response Log ---")
+        print(f"Status Code: {response.status_code}")
+        print(f"API Status: {data.get('status')}")
+        
+        if data.get("status") == "error":
+            print(f"❌ APIエラーメッセージ: {data.get('message')}")
+            return []
+            
+        articles = data.get('articles', [])
+        print(f"✅ 取得できた記事数: {len(articles)}")
+        return articles
+
+    except Exception as e:
+        print(f"❌ 通信エラーが発生しました: {e}")
+        return []
+
+# ニュース取得（カテゴリを問わず、まずは記事が出るか試す）
+articles = get_news("all")
 html_content = ""
 
-for cat_id, cat_name in categories.items():
-    articles = get_news(cat_id)
-    html_content += f"<h2>{cat_name} ({len(articles)}件ヒット)</h2>"
-    
-    if not articles:
-        html_content += "<p>この記事カテゴリは現在空です。</p>"
-    
+if not articles:
+    html_content = "<p style='color:red;'>【致命的】記事が1件も取得できませんでした。APIキーの設定や制限を確認してください。</p>"
+else:
     for art in articles:
-        # タイトルとリンクだけのシンプルな表示
         html_content += f"""
-        <div class="card" style="background: white; padding: 10px; margin-bottom: 5px; border-radius: 5px;">
-            <h3><a href="{art['url']}" target="_blank">{art['title']}</a></h3>
-            <p>ソース: {art.get('source', {}).get('name', '不明')}</p>
+        <div style="background:white; padding:10px; border-radius:5px; margin-bottom:10px;">
+            <h3><a href="{art['url']}">{art['title']}</a></h3>
+            <p>公開日時: {art.get('publishedAt')}</p>
         </div>"""
 
-# 日本時間を取得
+# 日本時間
 JST = timezone(timedelta(hours=+9), 'JST')
 now = datetime.now(JST).strftime('%Y-%m-%d %H:%M:%S')
 
-# index.htmlを作成
 template = f"""
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>NewsAPI テスト表示</title>
-    <style>
-        body {{ font-family: sans-serif; max-width: 800px; margin: auto; padding: 20px; background: #f0f2f5; }}
-        h2 {{ border-left: 5px solid #007bff; padding-left: 10px; margin-top: 30px; }}
-    </style>
-</head>
-<body>
-    <h1>🧪 NewsAPI 取得テスト</h1>
-    <p>最終実行: {now}</p>
-    {html_content}
+<head><meta charset="UTF-8"><title>デバッグ表示</title></head>
+<body style="background:#f0f2f5; font-family:sans-serif; padding:20px;">
+    <h1>🔍 NewsAPI 接続テスト</h1>
+    <p>実行時刻: {now}</p>
+    <div id="news-container">{html_content}</div>
 </body>
 </html>
 """
