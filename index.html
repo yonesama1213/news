@@ -4,56 +4,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AIニュース要約</title>
+    <title>AIニュース要約ダッシュボード</title>
     <style>
-        body { font-family: sans-serif; background: #f4f7f6; padding: 20px; max-width: 800px; margin: auto; color: #333; }
-        h1 { text-align: center; color: #2c3e50; }
-        .card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 20px; }
-        .card h3 { margin: 10px 0; font-size: 1.2em; }
-        .card a { color: #007bff; text-decoration: none; }
-        .term { color: #e74c3c; border-bottom: 2px dotted #e74c3c; cursor: help; font-weight: bold; }
-        .update-time { text-align: center; font-size: 0.8em; color: #95a5a6; }
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; background: #f0f2f5; margin: 0; padding: 20px; color: #333; line-height: 1.6; }
+        .container { max-width: 800px; margin: auto; }
+        h1 { text-align: center; color: #1a73e8; margin-bottom: 10px; }
+        .update-time { text-align: center; font-size: 0.8em; color: #70757a; margin-bottom: 30px; }
+        .card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); margin-bottom: 25px; position: relative; }
+        .category-label { display: inline-block; background: #e8f0fe; color: #1967d2; font-size: 0.75em; font-weight: bold; padding: 4px 12px; border-radius: 20px; margin-bottom: 10px; }
+        h3 { margin: 0 0 15px 0; font-size: 1.25em; }
+        h3 a { color: #1a0dab; text-decoration: none; }
+        h3 a:hover { text-decoration: underline; }
+        p { margin: 0; color: #3c4043; }
+        .term { color: #d93025; border-bottom: 2px dotted #d93025; cursor: help; font-weight: bold; }
+        footer { text-align: center; margin-top: 50px; font-size: 0.8em; color: #70757a; }
     </style>
 </head>
 <body>
-    <h1>📰 AIニュース要約くん</h1>
-    <p class="update-time">最終更新: 2026-02-27 16:17:52</p>
-    
-    <div class="card">
-        <small>Top 1</small>
-        <h3><a href="https://news.google.com/rss/articles/CBMibEFVX3lxTE9yRlRBMFhRRDNFQTJQYWxSam8tTGVxRGg5MC04TTYzYWZRcjVqcmhWYllOcC1xMXRKVTN4RFBMNU1tU194VFR4WEQ1NkdlcHRGUjJwUmNmU0twWnZoX3dKSzhIZnAzVGRtVkZxLQ?oc=5" target="_blank">ヒラリー氏「エプスタイン氏に会った記憶ない」 米議会委に証言 - 日本経済新聞 - 日本経済新聞</a></h3>
-        <p>要約の生成に失敗しました。</p>
+    <div class="container">
+        <h1>📰 AI News Summarizer</h1>
+        <p class="update-time">最終更新（日本時間）: 2026-02-27 16:27:09</p>
+        
+        <footer>© 2026 AI News Project - Powered by Google News RSS & Gemini API</footer>
     </div>
-    
-    <div class="card">
-        <small>Top 2</small>
-        <h3><a href="https://news.google.com/rss/articles/CBMiYkFVX3lxTE5TMG9neFBSYWZPaFM4WHRVcGlfaFhsUlFsOFlzTmZIOURybnA3T0VQQ0pEbkZVRnpoZ1U4UzdTRDduLV84R1RwUV9DbmZqUldyQ09RamZDMXRqa29QLVF0MkFn?oc=5" target="_blank">中国当局の関係者、高市首相の信頼低下させる計画で「チャットＧＰＴ」に助言求める…米オープンＡＩ発表 - 読売新聞オンライン</a></h3>
-        <p>要約の生成に失敗しました。</p>
-    </div>
-    
-    <div class="card">
-        <small>Top 3</small>
-        <h3><a href="https://news.google.com/rss/articles/CBMif0FVX3lxTFBnbEtJYmtUNHJwOFhNeUV3TlNGdVUwWmZrRmJ4amE1MXR6bGdGU3k0U3E5dnRGY1ZLbzA1VDdyQ1lGMkkzbEVOYXZBSXphLWdwZzZEYmJFUkpFeUpxVUd6TGVkWVN2TUdBcTB6OGp0R0h0cDM4NzMzdElWZXRCWkE?oc=5" target="_blank">【分析】トランプ氏の判断力めぐり米国民の懸念増大、世論調査で明らかに（CNN.co.jp） - Yahoo!ニュース</a></h3>
-        <p>要約の生成に失敗しました。</p>
-    </div>
-    
-    <div class="card">
-        <small>Top 4</small>
-        <h3><a href="https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1KTmFVT2VGSHpqR0w3TzN1ZUoyWHp5WWxIZkdCOTRyRHpXLXlXS2NEUjJTWUJjREdIZHcxdGNNVENEM1ppd2JmOXFaSHVsZ04yZnhaNC1JMFNsSElQYXdLOWRRUV9KNUE?oc=5" target="_blank">性暴力防ぐ教育、なぜ広まらない 専門家「性行為を教えない」と批判 - 朝日新聞</a></h3>
-        <p>要約の生成に失敗しました。</p>
-    </div>
-    
-    <div class="card">
-        <small>Top 5</small>
-        <h3><a href="https://news.google.com/rss/articles/CBMiY0FVX3lxTE9CdWYtNzBTYjU4YjBUTUpvNHZ6YlRWMzVVR3djS2N2cUdwc1hNRmpmcXdwYzJiQVQ5bHNEczFHTGl6QnprbVBMN3JsYWxBd3pYS0twa3hpdGdPc05GMEdOTE5sZw?oc=5" target="_blank">消費減税、夏までに意見集約 高市首相、皇位継承「男系男子限定が適切」―衆院予算委 - 時事ドットコム</a></h3>
-        <p>要約の生成に失敗しました。</p>
-    </div>
-    
-    <div class="card">
-        <small>Top 6</small>
-        <h3><a href="https://news.google.com/rss/articles/CBMiVEFVX3lxTE4zVGlWUmpZRkotVXBSS3FXcTRpYkgtZkh1ZklrMHM4c0xwa0NzZUM5Wmo3SFNsWXNYOENCQ0llZXpHS3BVb0ViSnBKOG5EekpsdGpJTA?oc=5" target="_blank">寒暖差が非常に大きい2月 中旬以降の暖かさで平年より2℃近く高い - ウェザーニュース</a></h3>
-        <p>要約の生成に失敗しました。</p>
-    </div>
-    
 </body>
 </html>
