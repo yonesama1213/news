@@ -19,6 +19,12 @@ def get_top_news():
         response = requests.get(url)
         data = response.json()
         articles = data.get('articles', [])
+
+        if not articles:
+            print("Top-headlines returned 0. Switching to everything search...")
+            search_url = f"https://newsapi.org/v2/everything?q=ニュース&language=ja&sortBy=publishedAt&pageSize=5&apiKey={NEWS_API_KEY}"
+            articles = requests.get(search_url).json().get('articles', [])
+
         return articles
     except Exception as e:
         print(f"NewsAPI Error: {e}")
