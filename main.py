@@ -2,6 +2,7 @@ import requests
 import google.generativeai as genai
 import os
 import json
+from datetime import datetime, timedelta, timezone # これを追加！
 
 # 設定（GitHub ActionsのSecretsから読み込む）
 NEWS_API_KEY = os.getenv("NEWS_API_KEY")
@@ -44,6 +45,9 @@ for cat_id, cat_name in categories.items():
             <p>{summary}</p>
         </div>"""
 
+JST = timezone(timedelta(hours=+9), 'JST')
+now = datetime.now(JST).strftime('%Y-%m-%d %H:%M:%S')
+
 # index.htmlを作成
 template = f"""
 <!DOCTYPE html>
@@ -60,7 +64,7 @@ template = f"""
 <body>
     <h1>📰 最新ニュース要約</h1>
     {html_content}
-    <p style="font-size: 0.8em;">更新: {requests.get('https://worldtimeapi.org/api/timezone/Asia/Tokyo').json()['datetime']}</p>
+    <p style="font-size: 0.8em;">最終更新（日本時間）: {now}</p>
 </body>
 </html>
 """
