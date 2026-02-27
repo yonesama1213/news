@@ -1,70 +1,56 @@
 import requests
+import xml.etree.ElementTree as ET
+import google.generativeai as genai
 import os
+import json
 from datetime import datetime, timedelta, timezone
-NEWS_API_KEY = os.getenv("NEWS_API_KEY")
 
-if NEWS_API_KEY:
-    print(f"使用中のキー: {NEWS_API_KEY[:3]}...{NEWS_API_KEY[-3:]}")
-else:
-    print("⚠️ NEWS_API_KEY が設定されていません")
+# Geminiの設定のみ使用
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+genai.configure(api_key=GEMINI_API_KEY)
+model = genai.GenerativeModel('gemini-1.5-flash')
 
-def get_diagnostics():
-    # 日本(jp)のトップニュースを取得
-    url = f"https://newsapi.org/v2/top-headlines?country=jp&apiKey={NEWS_API_KEY}"
-    try:
-        response = requests.get(url)
-        data = response.json()
-        
-        # 診断情報の作成
-        diag = {
-            "status_code": response.status_code,
-            "api_status": data.get("status"),
-            "total_results": data.get("totalResults"),
-            "message": data.get("message", "No error message"),
-            "articles_len": len(data.get("articles", []))
-        }
-        return diag, data.get("articles", [])
-    except Exception as e:
-        return {"error": str(e)}, []
+def get_google_news():
+    # GoogleニュースのRSSから日本の最新ニュースを取得
+    url = "https://news.google.com/rss?hl=ja&gl=JP&ceid=JP:ja"
+    response = requests.get(url)
+    root = ET.fromstring(response.text)
+    articles = []
+    # 最新の5件を抽出
+    for item in root.findall('.//item')[:5]:
+        articles.append({
+            'title': item.find('title').text,
+            'link': item.find('link').text
+        })
+    return articles
 
-# 診断実行
-diag, articles = get_diagnostics()
-
-html_content = ""
-if not articles:
-    html_content = f"""
-    <div style="background:#ffebee; color:#c62828; padding:20px; border-radius:8px; border:2px solid #ef9a9a;">
-        <h3>⚠️ ニュースが取得できませんでした</h3>
-        <p><strong>原因のヒント:</strong></p>
-        <ul>
-            <li>HTTPステータス: {diag.get('status_code')}</li>
-            <li>APIステータス: {diag.get('api_status')}</li>
-            <li>ヒット件数: {diag.get('total_results')}</li>
-            <li>エラー詳細: {diag.get('message')}</li>
-        </ul>
-        <p>※ヒット件数が 0 の場合、NewsAPI側で日本のニュースが一時的に止まっているか、無料制限がかかっています。</p>
-    </div>
+def summarize_with_gemini(title):
+    prompt = f"""
+    以下のニュースを3文で要約し、専門用語を最大3つ抽出して解説してください。
+    必ず以下のJSON形式のみで返答してください。
+    {{"summary": "...", "glossary": [{{"word": "...", "def": "..."}}]}}
+    タイトル: {title}
     """
-else:
-    # 記事がある場合は簡易表示
-    for art in articles[:5]:
-        html_content += f"<li>{art['title']}</li>"
+    try:
+        response = model.generate_content(prompt)
+        text = response.text
+        start, end = text.find('{'), text.rfind('}') + 1
+        return json.loads(text[start:end])
+    except:
+        return {"summary": "要約に失敗しました。", "glossary": []}
 
-# 日本時間
-JST = timezone(timedelta(hours=+9), 'JST')
-now = datetime.now(JST).strftime('%Y-%m-%d %H:%M:%S')
+# --- メイン処理 ---
+articles = get_google_news()
+html_all = ""
 
-template = f"""
-<!DOCTYPE html>
-<html>
-<head><meta charset="UTF-8"><title>デバッグ画面</title></head>
-<body style="font-family:sans-serif; padding:20px; max-width:600px; margin:auto;">
-    <h1>🔍 接続診断モード</h1>
-    <p>最終実行: {now}</p>
-    {html_content}
-</body>
-</html>
-"""
+for art in articles:
+    ai_data = summarize_with_gemini(art['title'])
+    summary = ai_data['summary']
+    for g in ai_data['glossary']:
+        summary = summary.replace(g['word'], f'<span title="{g["def"]}" style="color:blue;cursor:help;border-bottom:1px dotted;">{g["word"]}</span>')
+    
+    html_all += f"<div><h3><a href='{art['link']}'>{art['title']}</a></h3><p>{summary}</p></div>"
 
+# HTML書き出し（デザインは簡略化）
 with open("index.html", "w", encoding="utf-8") as f:
-    f.write(template)
+    f.write(f"<html><body><h1>🗞️ AIニュース要約</h1>{html_all}</body></html>")
