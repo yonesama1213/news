@@ -34,6 +34,10 @@ def summarize_with_retry(title, max_retries=3):
                 model=model_id,
                 contents=prompt
             )
+
+            if not response.text:
+                continue
+            
             text = response.text.strip()
             
             # JSON抽出
