@@ -4,6 +4,9 @@ import google.generativeai as genai
 import os
 import json
 import time
+import sys
+print("実際に動いているパス:", sys.executable)
+print("実際に動いているバージョン:", sys.version)
 from datetime import datetime, timedelta, timezone
 
 # APIキーの設定
