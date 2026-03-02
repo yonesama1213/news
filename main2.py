@@ -19,7 +19,7 @@ CATEGORIES = {
 
 def summarize_with_retry(title, max_retries=3):
     # 最新モデルを指定
-    model_names = ["gemini-1.5-flash", "models/gemini-1.5-flash"]
+    model_id = "gemini-2.5-flash"
     prompt = f"""
     以下のニュースを3文で要約し、専門用語を最大2つ抽出して解説してください。
     必ず以下のJSON形式のみで返答してください。
