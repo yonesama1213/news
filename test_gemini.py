@@ -19,7 +19,7 @@ def test_connection():
         
         # 最もシンプルなリクエスト
         response = client.models.generate_content(
-            model="gemini-3-flash",
+            model="models/gemini-2.0-flash",
             contents="「接続成功」とだけ答えてください。"
         )
         
