@@ -28,6 +28,7 @@ def summarize_with_retry(title, max_retries=3):
     """
     
     for i in range(max_retries):
+        current_model = model_names[i % len(model_names)]
         try:
             # 新しいライブラリの呼び出し方
             response = client.models.generate_content(
