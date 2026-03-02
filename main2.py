@@ -92,3 +92,4 @@ template = f"<html><body style='background:#f8f9fa; font-family:sans-serif; padd
 
 with open("index.html", "w", encoding="utf-8") as f:
     f.write(template)
+    

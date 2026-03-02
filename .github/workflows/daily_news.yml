@@ -26,6 +26,7 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
+          git pull origin main --rebase
           git add index.html
           git commit -m "Update news summary" || exit 0
           git push
