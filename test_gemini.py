@@ -15,11 +15,11 @@ def test_connection():
         # クライアント初期化
         client = genai.Client(api_key=api_key)
         
-        print(f"使用モデル: gemini-2.0-flash")
+        print(f"使用モデル: gemini-3-flash")
         
         # 最もシンプルなリクエスト
         response = client.models.generate_content(
-            model="gemini-1.5-flash",
+            model="gemini-3-flash",
             contents="「接続成功」とだけ答えてください。"
         )
         
