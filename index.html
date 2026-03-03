@@ -4,24 +4,55 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AIニュースダッシュボード</title>
+    <title>AIニュース解説</title>
     <style>
         body { background:#f8f9fa; font-family:sans-serif; padding:20px; max-width:800px; margin:auto; color:#202124; }
         h1 { border-left: 5px solid #1a73e8; padding-left: 15px; }
         .tab-container { display: flex; gap: 8px; margin-bottom: 20px; overflow-x: auto; padding-bottom: 5px; }
         .tab-btn { padding: 10px 18px; border: none; border-radius: 20px; background: #e8eaed; cursor: pointer; white-space: nowrap; font-weight: bold; transition: 0.3s; }
         .tab-btn.active { background: #1a73e8; color: white; }
+        
         .news-card { background:white; padding:20px; border-radius:12px; margin-bottom:20px; box-shadow:0 2px 8px rgba(0,0,0,0.05); border: 1px solid #dadce0; }
-        .glossary-term { color:#d93025; border-bottom:2px dotted; cursor:help; font-weight: bold; }
+        .news-card h3 a { text-decoration:none; color:#1a0dab; }
+
+        /* 専門用語の吹き出しカスタマイズ */
+        .glossary-term {
+            color:#d93025;
+            border-bottom:2px dotted;
+            cursor:help;
+            font-weight: bold;
+            position: relative;
+            display: inline-block;
+        }
+
+        .glossary-term::after {
+            content: attr(data-title);
+            display: none;
+            position: absolute;
+            bottom: 130%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #333;
+            color: #fff;
+            padding: 12px 16px;
+            border-radius: 8px;
+            width: 260px;
+            font-size: 1.1rem; /* ✅ 文字を大きく設定 */
+            line-height: 1.6;
+            z-index: 100;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .glossary-term:hover::after {
+            display: block;
+        }
+        
         small { color: #5f6368; }
     </style>
     <script>
         function showCategory(catId) {
-            // すべてのセクションを隠す
             document.querySelectorAll('.category-section').forEach(el => el.style.display = 'none');
-            // すべてのボタンからactiveを消す
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            // 選択されたものだけ表示
             document.getElementById(catId).style.display = 'block';
             event.currentTarget.classList.add('active');
         }
@@ -29,72 +60,70 @@
 </head>
 <body>
     <h1>🗞️ AI要約ダッシュボード</h1>
-    <p><small>最終更新: 2026-03-03 13:03:05 (JST)</small></p>
+    <p><small>最終更新: 2026-03-03 14:15:25 (JST)</small></p>
     <div class="tab-container"><button class="tab-btn active" onclick="showCategory('国内情勢')">国内情勢</button><button class="tab-btn " onclick="showCategory('世界情勢')">世界情勢</button><button class="tab-btn " onclick="showCategory('ビジネス')">ビジネス</button><button class="tab-btn " onclick="showCategory('テクノロジー')">テクノロジー</button><button class="tab-btn " onclick="showCategory('教育・科学')">教育・科学</button></div>
     <div id="国内情勢" class="category-section" style="display:block;">
             <div class="news-card">
-                <h3 style="margin:10px 0;"><a href="https://news.google.com/rss/articles/CBMiY0FVX3lxTE11TEliUGNWczBpNUsyRkRHZC1FMHhkaS1rMGQtVHNXMVFsXzNiSnJpYkVDVGNlMW1XMkdyZGh2WnEtczNxcU92cGZlcTBHSzFyTE1xa3NxXzBnLTlWSk5uN0NjWQ?oc=5" target="_blank" style="text-decoration:none; color:#1a0dab;">日本の首相は “UAE大統領の訪問よりも国内政治を優先した” - arabnews.jp</a></h3>
-                <p>日本の首相が、アラブ首長国連邦（UAE）の大統領訪問よりも国内の政治的な課題を優先したと報じられています。これは、通常ならば重要な外交機会である大統領の来日日程に調整が生じたことを示しており、国内で首相が対応すべき喫緊の政治問題があったと見られます。この判断は、中東地域との外交関係、および首相の国内でのリーダーシップに対する評価に影響を与える可能性があります。</p>
+                <h3><a href="https://news.google.com/rss/articles/CBMiY0FVX3lxTE11TEliUGNWczBpNUsyRkRHZC1FMHhkaS1rMGQtVHNXMVFsXzNiSnJpYkVDVGNlMW1XMkdyZGh2WnEtczNxcU92cGZlcTBHSzFyTE1xa3NxXzBnLTlWSk5uN0NjWQ?oc=5" target="_blank">日本の首相は “UAE大統領の訪問よりも国内政治を優先した” - arabnews.jp</a></h3>
+                <p>日本の首相は、アラブ首長国連邦（UAE）の首脳との会談について、国内の政治日程を優先し調整したと報じられています。この報道は、中東地域の重要なパートナーであるUAE側から、外交関係の軽視ではないかとの懸念を引き起こしている可能性があります。国内政治と国際外交のバランスの取り方について、今後の関係に影響を及ぼす可能性が指摘されています。</p>
             </div>
             <div class="news-card">
-                <h3 style="margin:10px 0;"><a href="https://news.google.com/rss/articles/CBMiZ0FVX3lxTE82eVNPcDF3a2lVM0NCOWdHYklQMjhDLUxKZWtBaHdMSHdzYTl4dTlWRHRLTzNRWlczUGtaR2VoQXVOcUZTYktfenNDM0dRRkRNQ3VSSzk1b2lhYk1aTjdwT3VXUU5VY1U?oc=5" target="_blank" style="text-decoration:none; color:#1a0dab;">右派勢力台頭、リベラル退潮…揺れる国際秩序と日本 政治記者座談会 - 朝日新聞</a></h3>
-                <p>現在、世界中で自国の利益や伝統を優先する「<span class="glossary-term" title="自国の伝統や文化、国家の主権や利益を優先する考え方を持つ政治勢力のことを指します。多くの場合、移民の制限や保護主義（自国産業の保護）といった政策を主張することが見られます。">右派勢力</span>」が力をつけ、個人の自由や国際協調を重んじる「<span class="glossary-term" title="個人の自由や平等、人権の尊重を重視し、国際協調や多文化共生を推進する考え方を持つ政治勢力のことを指します。社会福祉の充実や環境保護なども重要な政策課題とします。">リベラル</span>」な考え方が後退する傾向が見られます。この動きは、国と国との関係を安定させるためのルールや枠組みである「国際秩序」に大きな変化をもたらし、世界の安定性に対する懸念が高まっています。日本もこの国際的な潮流と無縁ではなく、外交政策や経済活動において、変化する世界情勢への対応が強く求められています。</p>
+                <h3><a href="https://news.google.com/rss/articles/CBMiZ0FVX3lxTE82eVNPcDF3a2lVM0NCOWdHYklQMjhDLUxKZWtBaHdMSHdzYTl4dTlWRHRLTzNRWlczUGtaR2VoQXVOcUZTYktfenNDM0dRRkRNQ3VSSzk1b2lhYk1aTjdwT3VXUU5VY1U?oc=5" target="_blank">右派勢力台頭、リベラル退潮…揺れる国際秩序と日本 政治記者座談会 - 朝日新聞</a></h3>
+                <p>世界では、伝統や国家の利益を重視する「<span class="glossary-term" data-title="伝統や国家の利益、あるいは社会の秩序などを重視する政治的な考え方や、その考えを持つ人々や政党を指します。一般的に、保守的な思想を持つことが多いです。">右派勢力</span>」が力をつけ、個人の自由や多様性を重んじる「<span class="glossary-term" data-title="個人の自由や平等、多様性を尊重し、社会の進歩や改革を追求する政治的な考え方や、その考えを持つ人々や政党を指します。一般的に、進歩的な思想を持つことが多いです。">リベラル</span>」な考え方が退潮しており、これまで国々が協力し合ってきた国際秩序が大きく揺らいでいます。この変化は、経済格差の拡大や社会の分断といった複雑な背景を持ち、各国が自国の利益を優先する傾向を強めています。日本も外交や安全保障、経済政策を考える上で、この世界の大きな潮流を理解し、適切に対応していくことが求められています。</p>
             </div>
             <div class="news-card">
-                <h3 style="margin:10px 0;"><a href="https://news.google.com/rss/articles/CBMickFVX3lxTE1zRWxaYVFPV0ZjZmhpSzB0M2xIaUVpRG9scnJ0LTFwdzZGbnZxMWcxRUg1UGFNdmZnLVBwbzFkODVSZktZZXEtb2RMRnZfTkdFWjZTNmhaejhJQXNWaXphMVJUX2ppZkk4ZmVBTTFhVlF1UQ?oc=5" target="_blank" style="text-decoration:none; color:#1a0dab;">発表！２０２５年読者が選んだ日本１０大ニュース - 読売新聞オンライン</a></h3>
-                <p>読売新聞オンラインは、来る2025年に発生した様々な出来事の中から、読者の投票によって選ばれた「日本<span class="glossary-term" title="ある特定の期間（多くは1年間）に発生した数多くの出来事の中から、特に社会に大きな影響を与えたり、人々の関心を集めたりした重要な10項目を選び出して発表するものです。">10大ニュース</span>」を発表しました。このランキングは、社会がどのような問題に関心を持ち、どのような変化を重要だと捉えているかを示すものであり、国内外の情勢や技術革新、社会問題などが反映されていると考えられます。選出されたニュースは、今後の社会の動きや政策立案にも影響を与える可能性があり、私たちの未来を考える上で重要な指標となります。</p>
+                <h3><a href="https://news.google.com/rss/articles/CBMickFVX3lxTE1zRWxaYVFPV0ZjZmhpSzB0M2xIaUVpRG9scnJ0LTFwdzZGbnZxMWcxRUg1UGFNdmZnLVBwbzFkODVSZktZZXEtb2RMRnZfTkdFWjZTNmhaejhJQXNWaXphMVJUX2ppZkk4ZmVBTTFhVlF1UQ?oc=5" target="_blank">発表！２０２５年読者が選んだ日本１０大ニュース - 読売新聞オンライン</a></h3>
+                <p>2025年の「日本10大ニュース」では、特に「大阪・関西万博」が多くの読者の注目を集めました。この万博は「いのち輝く未来社会のデザイン」をテーマに掲げ、世界各国からの最新技術や文化の展示、交流が期待されています。万博の開催は、日本の技術力や文化を世界に発信する絶好の機会となり、経済効果や地域の活性化、そして未来の社会像を考えるきっかけとなるでしょう。</p>
             </div></div><div id="世界情勢" class="category-section" style="display:none;">
             <div class="news-card">
-                <h3 style="margin:10px 0;"><a href="https://news.google.com/rss/articles/CBMif0FVX3lxTE9wR2RaREVrckgxVmpSWlN4Y2pKcnI4d01sVUxhdXhFWXdkWUlCVG8xcmxKeW5ORFVSVk41Y3FrNWJxTE9RYkY0VFBoODEwbzlXZjl2T0N3Z0hZRXI5QzEwaG0xb2tsbHpzaFQ1cjd5ZTd2VC1vWng3dHZwbnpsdjQ?oc=5" target="_blank" style="text-decoration:none; color:#1a0dab;">大阪国際女子マラソン・アジア選手権クロカン・世界大学クロカン いつにない経験を積む冬季も冷静に「地に足つけて1個ずつ」 - Yahoo!ニュース</a></h3>
-                <p>このニュースは、ある陸上競技選手が冬季の期間に、大阪国際女子<span class="glossary-term" title="陸上競技の長距離種目で、国際陸上競技連盟が定める42.195キロメートルの距離を走るロードレースのことです。主に舗装された道路を舞台に行われ、完走には高い持久力と精神力が求められる過酷な競技として知られています。">マラソン</span>、アジア選手権<span class="glossary-term" title="陸上競技の一種で、野山や森林、芝生など整備されていない自然の地形に設けられたコースを走る長距離走のことです。舗装された道路を走る<span class="glossary-term" title="陸上競技の長距離種目で、国際陸上競技連盟が定める42.195キロメートルの距離を走るロードレースのことです。主に舗装された道路を舞台に行われ、完走には高い持久力と精神力が求められる過酷な競技として知られています。">マラソン</span>などとは異なり、起伏のある路面や不整地での走力、状況判断力が重要となる競技です。">クロスカントリー</span>、世界大学<span class="glossary-term" title="陸上競技の一種で、野山や森林、芝生など整備されていない自然の地形に設けられたコースを走る長距離走のことです。舗装された道路を走る<span class="glossary-term" title="陸上競技の長距離種目で、国際陸上競技連盟が定める42.195キロメートルの距離を走るロードレースのことです。主に舗装された道路を舞台に行われ、完走には高い持久力と精神力が求められる過酷な競技として知られています。">マラソン</span>などとは異なり、起伏のある路面や不整地での走力、状況判断力が重要となる競技です。">クロスカントリー</span>といった複数の国際大会に出場し、普段とは異なる貴重な経験を積んでいることを伝えています。通常、調整期間となる冬季に<span class="glossary-term" title="陸上競技の長距離種目で、国際陸上競技連盟が定める42.195キロメートルの距離を走るロードレースのことです。主に舗装された道路を舞台に行われ、完走には高い持久力と精神力が求められる過酷な競技として知られています。">マラソン</span>や野外を走る<span class="glossary-term" title="陸上競技の一種で、野山や森林、芝生など整備されていない自然の地形に設けられたコースを走る長距離走のことです。舗装された道路を走る<span class="glossary-term" title="陸上競技の長距離種目で、国際陸上競技連盟が定める42.195キロメートルの距離を走るロードレースのことです。主に舗装された道路を舞台に行われ、完走には高い持久力と精神力が求められる過酷な競技として知られています。">マラソン</span>などとは異なり、起伏のある路面や不整地での走力、状況判断力が重要となる競技です。">クロスカントリー</span>といった異なる種目の国際舞台へ挑むことは、選手にとって大きな挑戦であり、競技力の幅を広げる機会となります。選手はこれらの経験を冷静に受け止め、一つずつ着実に成長に繋げていく姿勢を見せており、今後のさらなる活躍が期待されます。</p>
+                <h3><a href="https://news.google.com/rss/articles/CBMif0FVX3lxTE9wR2RaREVrckgxVmpSWlN4Y2pKcnI4d01sVUxhdXhFWXdkWUlCVG8xcmxKeW5ORFVSVk41Y3FrNWJxTE9RYkY0VFBoODEwbzlXZjl2T0N3Z0hZRXI5QzEwaG0xb2tsbHpzaFQ1cjd5ZTd2VC1vWng3dHZwbnpsdjQ?oc=5" target="_blank">大阪国際女子マラソン・アジア選手権クロカン・世界大学クロカン いつにない経験を積む冬季も冷静に「地に足つけて1個ずつ」 - Yahoo!ニュース</a></h3>
+                <p>冬季は通常、地道なトレーニング期間ですが、大阪国際女子マラソンやアジア・世界大学<span class="glossary-term" data-title="舗装されていない草原や森林、起伏のある地形などを走る陸上競技の一種です。ロードレースとは異なり、自然のコースを走るため、様々な状況に対応する能力が求められます。">クロスカントリー</span>など国際的な陸上競技大会が開催され、選手たちに貴重な経験の機会を提供しています。
+普段とは異なる環境やレベルでの実戦を通じて、選手たちは競技者としての視野を広げ、次のステップへ向けた課題を見つけることができます。
+この時期に焦らず、地に足をつけて一つずつ経験を積み重ねることが、春以降の主要大会での活躍や、長期的な競技力向上へと繋がっていくものと期待されています。</p>
             </div>
             <div class="news-card">
-                <h3 style="margin:10px 0;"><a href="https://news.google.com/rss/articles/CBMiZ0FVX3lxTE85X2JYcUI5WDBlNW9RWEhYNThhbmh5Y0hZNnM3S0QzdGd4bjNHWlBPdWt5X1FIOEhLR0Z0SWRqS0xYQmRYUVRfaXgzei1COVhwcmd0ZGRoZFo2bmxrb1N0czY3Z3RsRFU?oc=5" target="_blank" style="text-decoration:none; color:#1a0dab;">イラン攻撃、世界の反応 「危険な状況」「国際法の尊重を」 - 朝日新聞</a></h3>
-                <p>中東地域では、イランへの攻撃（イスラエルによる報復とみられるもの）が発生し、情勢が非常に緊迫しています。これは、両国間で続いている攻撃の応酬の一環と見られており、世界各国はさらなる事態悪化への強い懸念を表明しました。各国は、これ以上の軍事衝突を避け、<span class="glossary-term" title="国家間の関係や行動を律する国際的なルールや原則の集まりです。戦争や外交、人権など、多岐にわたる分野で国々が守るべき基準を定めています。">国際法</span>を尊重した対話による解決を求めています。</p>
+                <h3><a href="https://news.google.com/rss/articles/CBMiZ0FVX3lxTE85X2JYcUI5WDBlNW9RWEhYNThhbmh5Y0hZNnM3S0QzdGd4bjNHWlBPdWt5X1FIOEhLR0Z0SWRqS0xYQmRYUVRfaXgzei1COVhwcmd0ZGRoZFo2bmxrb1N0czY3Z3RsRFU?oc=5" target="_blank">イラン攻撃、世界の反応 「危険な状況」「国際法の尊重を」 - 朝日新聞</a></h3>
+                <p>イランに対する攻撃が発生したことを受け、国際社会は中東地域の緊張がさらに高まることへの強い懸念を示しています。各国は「危険な状況」であると指摘し、これ以上の<span class="glossary-term" data-title="軍隊や兵器を用いて、相手国に対して攻撃を加えるなど、強制的な軍事行動をとることです。国際法では原則として禁止されており、例外的な場合にのみ認められています。">武力行使</span>を避け、<span class="glossary-term" data-title="国と国の間の関係や行動を規律する、世界共通のルールのことです。これにより、国家間の平和的な共存や紛争解決が目指されています。">国際法</span>を尊重して事態を平和的に解決するよう呼びかけています。この事態は、不安定な中東情勢を一層複雑にし、今後の国際関係に大きな影響を与える可能性があります。</p>
             </div>
             <div class="news-card">
-                <h3 style="margin:10px 0;"><a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE9sNF9sUnNxOUlvaE1YNnl5alZYenJ5MlczVXAxWWcxYUVkbUwyOTdKN3FKS3V0Z3ZwVFV4OTl4dFJEdzFuY0N5bzRHQkZDV1kzczQ0dFJBVUk5X2ZwWnpQRmpab3hHclQ0LXc?oc=5" target="_blank" style="text-decoration:none; color:#1a0dab;">テヘランの世界遺産に被害 ゴレスタン宮殿:国際 - 福島民友新聞社</a></h3>
-                <p>イランの首都テヘランにあるユネスコ<span class="glossary-term" title="ユネスコ（国連教育科学文化機関）が定めた、地球全体にとって非常に価値が高く、人類が未来に引き継ぐべき文化財や自然を指します。">世界遺産</span>の<span class="glossary-term" title="イランの首都テヘランにある、カジャール朝時代の歴史的な宮殿群で、ペルシャ美術とヨーロッパ様式が融合した美しい建築と庭園が特徴のユネスコ世界遺産です。">ゴレスタン宮殿</span>が、何らかの被害を受けたことが報じられました。この宮殿は18世紀後半から建設が始まった歴史的建造物で、イランの芸術や建築様式を伝える貴重な文化遺産です。<span class="glossary-term" title="ユネスコ（国連教育科学文化機関）が定めた、地球全体にとって非常に価値が高く、人類が未来に引き継ぐべき文化財や自然を指します。">世界遺産</span>への被害は、人類共通の宝が失われることにつながるため、その修復と保護が国際社会からも注目されます。</p>
+                <h3><a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE9sNF9sUnNxOUlvaE1YNnl5alZYenJ5MlczVXAxWWcxYUVkbUwyOTdKN3FKS3V0Z3ZwVFV4OTl4dFJEdzFuY0N5bzRHQkZDV1kzczQ0dFJBVUk5X2ZwWnpQRmpab3hHclQ0LXc?oc=5" target="_blank">テヘランの世界遺産に被害 ゴレスタン宮殿:国際 - 福島民友新聞社</a></h3>
+                <p>イランの首都テヘランに位置する<span class="glossary-term" data-title="国際連合教育科学文化機関の略称です。教育、科学、文化の発展と交流を通じて、世界の平和と安全に貢献することを目的に設立された国際連合の専門機関です。">ユネスコ</span>の<span class="glossary-term" data-title="<span class="glossary-term" data-title="国際連合教育科学文化機関の略称です。教育、科学、文化の発展と交流を通じて、世界の平和と安全に貢献することを目的に設立された国際連合の専門機関です。">ユネスコ</span>（国際連合教育科学文化機関）が定める基準に基づき、歴史的、文化的、あるいは自然科学的に特に価値が高く、人類全体で守り、後世に伝えていくべきと認められた遺跡や建造物、自然地域などのことです。">世界遺産</span>『ゴレスタン宮殿』が被害を受けました。この宮殿は、イランの長い歴史と文化を象徴する貴重な建造物群であり、その建築様式や装飾は世界の文化史においても非常に重要な価値を持っています。人類共通の遺産が損なわれることへの懸念から、国際社会も今後の状況を注視しています。</p>
             </div></div><div id="ビジネス" class="category-section" style="display:none;">
             <div class="news-card">
-                <h3 style="margin:10px 0;"><a href="https://news.google.com/rss/articles/CBMiY0FVX3lxTE5IbHBvM0hOMS13UWthdTFRejI1SjRNd2VIR1M0czA5a1JwU2RsUndmcVZwX183MHp2ZmlaVTk0N0MyOVgyWHNlU0NSUjFleVp5ellDNlNqeUZ4VDdTcDVnTElRZw?oc=5" target="_blank" style="text-decoration:none; color:#1a0dab;">米卸売物価2.9％上昇 1月、市場予想上回る - nippon.com</a></h3>
-                <p>米国の1月の<span class="glossary-term" title="企業が商品を仕入れる際の価格のことで、物価の動きを示す重要な指標の一つです。これが上昇すると、やがて消費者が購入する商品の価格（消費者物価）にも影響を及ぼす可能性があります。">卸売物価</span>が前年同月比2.9%の上昇となり、これは市場（専門家や投資家の予想）を上回る結果となりました。
-この数字は、企業が商品を仕入れる際のコストが引き続き上がっていることを示しており、物価上昇の勢いが完全に収まっていないというインフレの根強さが意識されています。
-これにより、アメリカの中央銀行が早期に政策金利を引き下げる（<span class="glossary-term" title="中央銀行が、景気回復などを目的として政策金利を引き下げることを指します。金利が下がると、企業や個人がお金を借りやすくなり、経済活動が活発になる効果が期待されます。">利下げ</span>する）ことへの市場の期待が後退する可能性があります。</p>
+                <h3><a href="https://news.google.com/rss/articles/CBMiY0FVX3lxTE5IbHBvM0hOMS13UWthdTFRejI1SjRNd2VIR1M0czA5a1JwU2RsUndmcVZwX183MHp2ZmlaVTk0N0MyOVgyWHNlU0NSUjFleVp5ellDNlNqeUZ4VDdTcDVnTElRZw?oc=5" target="_blank">米卸売物価2.9％上昇 1月、市場予想上回る - nippon.com</a></h3>
+                <p>アメリカでは1月に企業が商品を仕入れる際の「卸売物価」が前年同月比で2.9%上昇し、専門家たちの「市場予想」を上回りました。これは、企業のコストが増加し、将来的に消費者が買う商品の値段にも影響する可能性を示しています。物価上昇の勢いが続くと、中央銀行が金利を上げるかどうかを判断する上で重要な材料となるため、今後の経済動向が注目されます。</p>
             </div>
             <div class="news-card">
-                <h3 style="margin:10px 0;"><a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE1PblAwYmRVWHZ1S2R4bjhQdjZVWEdpS3B1N0lTeXR5Y3J5MUxfdGdNR0I0elFneFRzMzRMYUh6UkNOYXphMnhwcnd6TmdDdTlrNTdaTTBIT181Q0xMQTNnd1FwcDJGalVlcGc?oc=5" target="_blank" style="text-decoration:none; color:#1a0dab;">調査レポート『循環経済型ビジネス 事業創出・参入戦略』を発行 国内循環経済型ビジネス市場、2050年には683兆円規模へ - PR TIMES</a></h3>
-                <p>資源を繰り返し利用し、廃棄物を減らすことを目指す「<span class="glossary-term" title="製品を製造・使用した後に廃棄するのではなく、修理やリサイクルなどを通じて資源を繰り返し活用し、ゴミの発生を抑えることを目的としたビジネスモデルです。地球の資源を守り、環境への負荷を減らすことを目指します。">循環経済型ビジネス</span>」に関する調査レポートが発表されました。このレポートでは、国内の<span class="glossary-term" title="製品を製造・使用した後に廃棄するのではなく、修理やリサイクルなどを通じて資源を繰り返し活用し、ゴミの発生を抑えることを目的としたビジネスモデルです。地球の資源を守り、環境への負荷を減らすことを目指します。">循環経済型ビジネス</span>市場が2050年には683兆円という巨大な規模に拡大すると予測されています。これは、環境問題の解決と経済成長を両立させる新たなビジネスモデルが、今後社会の大きな柱となる可能性を示しています。</p>
+                <h3><a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE1PblAwYmRVWHZ1S2R4bjhQdjZVWEdpS3B1N0lTeXR5Y3J5MUxfdGdNR0I0elFneFRzMzRMYUh6UkNOYXphMnhwcnd6TmdDdTlrNTdaTTBIT181Q0xMQTNnd1FwcDJGalVlcGc?oc=5" target="_blank">調査レポート『循環経済型ビジネス 事業創出・参入戦略』を発行 国内循環経済型ビジネス市場、2050年には683兆円規模へ - PR TIMES</a></h3>
+                <p>最新の調査レポートによると、資源を有効活用し廃棄物を減らすことを目指す「循環経済型ビジネス」の国内市場が、2050年には683兆円という巨大な規模に成長する見込みであることが発表されました。これは、これまでのように資源を使っては捨てる「一方通行の経済」から、製品を長く使い、修理や再利用を繰り返すことで資源を循環させる「循環経済」への移行が、環境問題解決と経済成長の両立に不可欠であるという認識が広まっているためです。この市場の拡大は、持続可能な社会の実現に貢献するだけでなく、新たなビジネスチャンスを生み出し、企業の事業戦略に大きな影響を与えることが予想されます。</p>
             </div>
             <div class="news-card">
-                <h3 style="margin:10px 0;"><a href="https://news.google.com/rss/articles/CBMiZkFVX3lxTFBGTHFLcVROZmQwM1lHWVJ5UFNrbmZWQXZ4VU9JdE0tUXJaWm9wRXlJbUZjOWo1aFRVd21UT201cy1qbWx4NVBmS3Zib3BFWURUSzA0S3Z3TEJlSVZkRmxfYzZSMjN4UQ?oc=5" target="_blank" style="text-decoration:none; color:#1a0dab;">蓄電所ビジネス市場に関する調査を実施（2025年） - yano.co.jp</a></h3>
-                <p>矢野経済研究所の調査によると、2025年の<span class="glossary-term" title="大量の電気を一時的に貯めておき、必要な時に供給する施設のことです。発電された電気を効率的に利用したり、停電時に備えたりする役割や、<span class="glossary-term" title="太陽光、風力、水力、地熱、バイオマスのように、自然の力を利用して繰り返し得られるエネルギーのことです。地球温暖化の原因となる温室効果ガスを排出しないため、環境に優しいエネルギー源として世界中で導入が進められています。">再生可能エネルギー</span>の不安定さを補うために重要です。">蓄電所</span>ビジネス市場は、<span class="glossary-term" title="太陽光、風力、水力、地熱、バイオマスのように、自然の力を利用して繰り返し得られるエネルギーのことです。地球温暖化の原因となる温室効果ガスを排出しないため、環境に優しいエネルギー源として世界中で導入が進められています。">再生可能エネルギー</span>の普及や電力系統の安定化ニーズを背景に、今後大きく成長すると予測されています。<span class="glossary-term" title="大量の電気を一時的に貯めておき、必要な時に供給する施設のことです。発電された電気を効率的に利用したり、停電時に備えたりする役割や、<span class="glossary-term" title="太陽光、風力、水力、地熱、バイオマスのように、自然の力を利用して繰り返し得られるエネルギーのことです。地球温暖化の原因となる温室効果ガスを排出しないため、環境に優しいエネルギー源として世界中で導入が進められています。">再生可能エネルギー</span>の不安定さを補うために重要です。">蓄電所</span>は、発電した電気を一時的に貯めておき、必要な時に供給する施設であり、太陽光や風力など天候に左右されやすい<span class="glossary-term" title="太陽光、風力、水力、地熱、バイオマスのように、自然の力を利用して繰り返し得られるエネルギーのことです。地球温暖化の原因となる温室効果ガスを排出しないため、環境に優しいエネルギー源として世界中で導入が進められています。">再生可能エネルギー</span>の導入を後押しする役割を担います。この市場の拡大は、日本のエネルギー供給をより安定させ、地球温暖化対策としても重要な脱炭素社会の実現に大きく貢献していくことになります。</p>
+                <h3><a href="https://news.google.com/rss/articles/CBMiZkFVX3lxTFBGTHFLcVROZmQwM1lHWVJ5UFNrbmZWQXZ4VU9JdE0tUXJaWm9wRXlJbUZjOWo1aFRVd21UT201cy1qbWx4NVBmS3Zib3BFWURUSzA0S3Z3TEJlSVZkRmxfYzZSMjN4UQ?oc=5" target="_blank">蓄電所ビジネス市場に関する調査を実施（2025年） - yano.co.jp</a></h3>
+                <p>矢野経済研究所は、電気を大規模に貯める「<span class="glossary-term" data-title="大規模なバッテリーシステムなどを使い、電気を貯蔵する施設のことです。太陽光や風力などで発電された、時間帯によって量が変動する電気を一時的に蓄え、必要な時に供給することで、電力の安定供給を支える役割を担っています。">蓄電所</span>」に関するビジネス市場の調査を実施しました。これは、太陽光発電や風力発電といった<span class="glossary-term" data-title="太陽光、風力、水力、地熱、バイオマスなど、自然の力を利用して繰り返し得られるエネルギー源のことです。化石燃料とは異なり枯渇する心配がなく、発電時に地球温暖化の原因となる二酸化炭素の排出が少ないため、持続可能な社会の実現に向けて世界中で導入が進められています。">再生可能エネルギー</span>の導入が進む中で、発電量の変動に対応し、安定して電気を供給するために、<span class="glossary-term" data-title="大規模なバッテリーシステムなどを使い、電気を貯蔵する施設のことです。太陽光や風力などで発電された、時間帯によって量が変動する電気を一時的に蓄え、必要な時に供給することで、電力の安定供給を支える役割を担っています。">蓄電所</span>の重要性が高まっているためです。電気を貯める技術は、私たちの生活に必要な電力を安定させる上で不可欠であり、関連ビジネスの今後の成長が期待されています。</p>
             </div></div><div id="テクノロジー" class="category-section" style="display:none;">
             <div class="news-card">
-                <h3 style="margin:10px 0;"><a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE5ZekNUeEZsYVA1MzBoZnV1ZU1mLUtmQ0lCT0lkd1JNalYzTmJuRXJNZ2hCclNqLXkxTjhWQ0E1SDdfSkhDaDhDT1MzSGFDV0lDcUlkR3pmUUlpZjliems5QzF6LUIyY1J5NGc?oc=5" target="_blank" style="text-decoration:none; color:#1a0dab;">有識者の「推し」は先行指標、見えてきたAfter AIのITインフラ技術 - 日経クロステック Active</a></h3>
-                <p>AIが社会に深く浸透した「After AI」の時代に向けて、ITを支える基盤技術である「<span class="glossary-term" title="情報技術（IT）を利用するために必要な、コンピューター本体、それらを繋ぐネットワーク、データを保存するサーバー、そしてそれらを動かす基本的なソフトウェアなど、情報システムを動かすための土台となる設備やシステム全体のことを指します。">ITインフラ</span>」がどのように進化するかが注目されています。この記事では、ITの専門家が特に注目している技術が、今後のIT業界の動向を予測する重要な手がかり（<span class="glossary-term" title="ある事柄の変化や動向を、他の事柄に先立って示すデータを指します。経済や技術開発の分野で、将来のトレンドや方向性を予測する際に重要な手がかりとなります。">先行指標</span>）になると指摘しています。これは、AIの能力を最大限に引き出すため、データセンターやネットワークの新しい設計など、技術革新が加速している現状を示しています。</p>
+                <h3><a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE5ZekNUeEZsYVA1MzBoZnV1ZU1mLUtmQ0lCT0lkd1JNalYzTmJuRXJNZ2hCclNqLXkxTjhWQ0E1SDdfSkhDaDhDT1MzSGFDV0lDcUlkR3pmUUlpZjliems5QzF6LUIyY1J5NGc?oc=5" target="_blank">有識者の「推し」は先行指標、見えてきたAfter AIのITインフラ技術 - 日経クロステック Active</a></h3>
+                <p>AI（人工知能）技術が社会に深く浸透した後の時代「After AI」を見据え、専門家たちが注目するIT（情報技術）の基盤技術の方向性が明らかになってきています。これは、今後の技術開発や投資の動向を予測する上で重要な「<span class="glossary-term" data-title="ある事柄や現象の将来的な動向を予測する際に、他の要素に先んじて変化を示すデータや指標のことを指します。">先行指標</span>」とされており、社会のデジタルトランスフォーメーションを支える次世代の「<span class="glossary-term" data-title="情報技術（Information Technology）を円滑に利用するために必要な、サーバー、ネットワーク、データセンターなどの物理的な設備や、それらを動かすためのソフトウェアやサービスといった基盤となる要素全体を指す言葉です。">ITインフラ</span>」がどのようなものになるかを示唆しています。この動きを理解することは、将来の社会の変化に対応するための手がかりとなるでしょう。</p>
             </div>
             <div class="news-card">
-                <h3 style="margin:10px 0;"><a href="https://news.google.com/rss/articles/CBMickFVX3lxTFBYeTBacTZqa1BvSG1KZDZhc3h2d1JkeVhMOE0xdTkwcWlzblcyY0czOWg2R3pDTFVKWTZoX0FyTFR6QmFWNW9GUGRuYi1FVGVFejA1ME1UOXIwS2dETWpFRFVNMUNPMjQ3SV9lVzdyYTFPUQ?oc=5" target="_blank" style="text-decoration:none; color:#1a0dab;">2025年の戦略的テクノロジのトップ・トレンド - Gartner</a></h3>
-                <p>情報技術分野の調査会社であるGartnerは、2025年に企業が特に注目すべき「<span class="glossary-term" title="企業が将来の成長や競争優位性を確保するために、特に重要であると位置づけ、積極的に投資すべきと考えている技術や技術分野を指します。">戦略的テクノロジ</span>のトップ・トレンド」を発表しました。これらのトレンドは、人工知能の進化や持続可能性への取り組みを強化する技術など、今後のビジネスや社会のあり方を大きく変える可能性を秘めています。企業はこれらの技術動向を理解し、自社の競争力を高めるための戦略にどのように取り入れるかを検討することが求められています。</p>
+                <h3><a href="https://news.google.com/rss/articles/CBMickFVX3lxTFBYeTBacTZqa1BvSG1KZDZhc3h2d1JkeVhMOE0xdTkwcWlzblcyY0czOWg2R3pDTFVKWTZoX0FyTFR6QmFWNW9GUGRuYi1FVGVFejA1ME1UOXIwS2dETWpFRFVNMUNPMjQ3SV9lVzdyYTFPUQ?oc=5" target="_blank">2025年の戦略的テクノロジのトップ・トレンド - Gartner</a></h3>
+                <p>IT調査会社Gartnerが発表した「2025年の<span class="glossary-term" data-title="企業や組織が、今後のビジネス展開や社会の変化に対応するために、特に重要だと考え、積極的に投資・活用していくべき技術のことです。数年以内に大きな影響をもたらすと予測されるものを指します。">戦略的テクノロジ</span>のトップ・トレンド」では、今後企業が注力すべき重要な技術の方向性が示されています。このレポートでは、特に<span class="glossary-term" data-title="学習した大量のデータをもとに、人間が作ったかのような文章、画像、音楽、プログラムコードなどを新たに「生成」できる人工知能の一種です。アイデアの創出や作業の自動化など、多岐にわたる応用が期待されています。">生成AI</span>のような新しい技術が企業の働き方や製品開発を大きく変えること、そして、サイバーセキュリティの強化や環境に優しいテクノロジーの導入が、今後の企業の競争力に直結することが強調されています。これらのトレンドは、企業が変化の激しい時代を生き抜き、持続的に成長するための羅針盤となり、私たちの社会全体にも大きな影響を与えると考えられています。</p>
             </div>
             <div class="news-card">
-                <h3 style="margin:10px 0;"><a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE1JNm5POS1iTVBranQ4cHZha1RCaEVoSTRVbjZ1OVZrZWtSXzJjSjV6QlpjOXRIU3NvSG82VENuNTJWMW9JLVdKVVpDTnVkcU9RN28zNXZjQUNnamR4X0ktZ0tDM3RKNnpHZ1E?oc=5" target="_blank" style="text-decoration:none; color:#1a0dab;">Netskope、AI時代におけるIT部門と経営陣との関係を調査：AI利用で企業のITインフラへの要求が高まる、従来のテクノロジーはパフォーマンス・レジリエンス・セキュリティ面で苦戦 | Netskope Japan株式会社のプレスリリース - PR TIMES</a></h3>
-                <p>Netskopeが行った調査により、AI（人工知能）の利用が広がる現代において、企業のITシステム全体、つまり「<span class="glossary-term" title="企業が事業活動を行う上で基盤となる情報技術全般を指します。具体的には、コンピューターやネットワーク機器、サーバー、ソフトウェア、データセンターなどが含まれ、これらがないと現代の企業活動は成り立ちません。">ITインフラ</span>」に求められるレベルが非常に高まっていることが明らかになりました。
-具体的には、AIが大量のデータを処理したり高度な情報セキュリティを要求したりするため、既存の技術ではシステムの処理能力（パフォーマンス）、障害からの回復力（<span class="glossary-term" title="システムや組織が、予期せぬ障害や困難に直面した際に、それを乗り越え、元の状態に回復したり、より強くなって適応したりする能力のことです。情報システムにおいては、トラブルが発生しても停止することなく運用を継続できる強さや、迅速に復旧できる能力を意味します。">レジリエンス</span>）、そして情報保護（セキュリティ）の面で十分に対応しきれていない現状が浮き彫りになっています。
-この調査結果は、企業がAIを安全かつ効率的に活用するために、IT部門と経営陣が協力し、現在の<span class="glossary-term" title="企業が事業活動を行う上で基盤となる情報技術全般を指します。具体的には、コンピューターやネットワーク機器、サーバー、ソフトウェア、データセンターなどが含まれ、これらがないと現代の企業活動は成り立ちません。">ITインフラ</span>を大きく見直し、新たな戦略を立てる必要性を示唆しています。</p>
+                <h3><a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE1JNm5POS1iTVBranQ4cHZha1RCaEVoSTRVbjZ1OVZrZWtSXzJjSjV6QlpjOXRIU3NvSG82VENuNTJWMW9JLVdKVVpDTnVkcU9RN28zNXZjQUNnamR4X0ktZ0tDM3RKNnpHZ1E?oc=5" target="_blank">Netskope、AI時代におけるIT部門と経営陣との関係を調査：AI利用で企業のITインフラへの要求が高まる、従来のテクノロジーはパフォーマンス・レジリエンス・セキュリティ面で苦戦 | Netskope Japan株式会社のプレスリリース - PR TIMES</a></h3>
+                <p>Netskopeの調査により、企業におけるAIの利用拡大が、情報システム（<span class="glossary-term" data-title="企業が事業活動を行う上で基盤となる情報技術全般を指します。具体的には、サーバー、ネットワーク機器、データセンター、そしてこれらを動かすソフトウェアなどが含まれ、情報システムの運用を支えています。">ITインフラ</span>）への要求を非常に高めていることが判明しました。その結果、従来の技術では、システムの処理能力（パフォーマンス）、障害への強さ（<span class="glossary-term" data-title="システムや組織が、予期せぬ障害や困難な状況に直面した際に、その影響を最小限に抑え、速やかに元の状態に回復する能力を意味します。IT分野においては、システムの停止やサイバー攻撃からの回復力を指すことが多いです。">レジリエンス</span>）、そして安全対策（セキュリティ）といった面で対応が難しくなっている状況です。この課題は、企業のIT部門と経営陣との間に、今後のIT投資や戦略に関する認識のずれを生じさせかねないことを指摘しており、新たな対策の必要性を示唆しています。</p>
             </div></div><div id="教育・科学" class="category-section" style="display:none;">
             <div class="news-card">
-                <h3 style="margin:10px 0;"><a href="https://news.google.com/rss/articles/CBMickFVX3lxTE5kMjhBMGNxOHMxbDdySEYybTBCdlhfYl9yNTJHd2Z3Z24wSXpwai1MWF9kc3UydU02cERGUXBsYlpFNVN6dWw1M25ieUgybmJRTU5nMTJ1VHNZTV8zc0Zmc19iaDh6M2tTVzZsNnVjUkFKdw?oc=5" target="_blank" style="text-decoration:none; color:#1a0dab;">アズミー・マハーフザ ヨルダン教育大臣兼務高等教育・科学研究大臣の中村副大臣への表敬訪問 - mext.go.jp</a></h3>
-                <p>ヨルダンのアズミー・マハーフザ教育大臣が、日本の文部科学省の中村副大臣を<span class="glossary-term" title="敬意を表す目的で、相手の元を訪れる公式な訪問のことです。挨拶を交わしたり、関係を深めたりする際に行われます。">表敬訪問</span>しました。この訪問では、両国の教育、特に大学での学びや科学研究における協力関係を強化するため、意見交換が行われています。今後、学生や研究者の交流がさらに活発になり、お互いの教育水準向上や科学技術の発展に貢献することが期待されます。</p>
+                <h3><a href="https://news.google.com/rss/articles/CBMickFVX3lxTE5kMjhBMGNxOHMxbDdySEYybTBCdlhfYl9yNTJHd2Z3Z24wSXpwai1MWF9kc3UydU02cERGUXBsYlpFNVN6dWw1M25ieUgybmJRTU5nMTJ1VHNZTV8zc0Zmc19iaDh6M2tTVzZsNnVjUkFKdw?oc=5" target="_blank">アズミー・マハーフザ ヨルダン教育大臣兼務高等教育・科学研究大臣の中村副大臣への表敬訪問 - mext.go.jp</a></h3>
+                <p>ヨルダンのアズミー・マハーフザ教育大臣兼<span class="glossary-term" data-title="高校を卒業した後に進学する、大学、大学院、短期大学、専門職大学などで提供される教育のことです。より専門的で高度な知識や技術を学ぶ場を指します。">高等教育</span>・科学研究大臣が、日本の文部科学省の中村副大臣を<span class="glossary-term" data-title="相手に対し、敬意を表すために公式に訪問することです。国際的な関係や政府間の交流において、互いの友好関係を確認したり、今後の協力について話し合ったりする目的で行われます。">表敬訪問</span>しました。この訪問は、両国が教育や科学技術の分野で、国際的な協力関係をさらに強化していくことを目的としています。今後、学生や研究者の交流、共同プロジェクトなどを通じて、具体的な連携が進むことが期待されます。</p>
             </div>
             <div class="news-card">
-                <h3 style="margin:10px 0;"><a href="https://news.google.com/rss/articles/CBMiXEFVX3lxTE1uaXdfVlY4bXltQWNoLVR3OVlsN2Z4Um94YjYzMnZUVWR2alRGcGFjaV9DTi1zTW9OMXRiMWJMRXJoT2ZTb21FOE9JSndZSVo1b1N1ckxVeWFDQmpi?oc=5" target="_blank" style="text-decoration:none; color:#1a0dab;">2027年度から人間社会科学研究科の名称を変更（構想中） - hiroshima-u.ac.jp</a></h3>
-                <p>広島大学は、2027年度から大学院の「人間社会科学研究科」の名称を変更することを現在検討しています。この名称変更は、社会の多様なニーズに応え、学問分野の専門性をより明確にすることで、教育研究活動の魅力を高めることを主な目的としています。新しい名称によって、学生や社会に対して研究科の学びがより伝わりやすくなり、将来を見据えた教育研究体制の強化が期待されます。</p>
+                <h3><a href="https://news.google.com/rss/articles/CBMiXEFVX3lxTE1uaXdfVlY4bXltQWNoLVR3OVlsN2Z4Um94YjYzMnZUVWR2alRGcGFjaV9DTi1zTW9OMXRiMWJMRXJoT2ZTb21FOE9JSndZSVo1b1N1ckxVeWFDQmpi?oc=5" target="_blank">2027年度から人間社会科学研究科の名称を変更（構想中） - hiroshima-u.ac.jp</a></h3>
+                <p>広島大学は、2027年度から大学院組織の一つである「<span class="glossary-term" data-title="広島大学に設置されている、人間や社会に関する幅広い学問分野（例えば、心理学、教育学、社会学、法学、経済学など）を深く研究し、専門的な教育を行う大学院の組織名称です。">人間社会科学研究科</span>」の名称を変更する構想を進めていることを明らかにしました。これは、現代社会のニーズや学問分野の進化に対応し、教育研究の内容をより明確に伝えることを目指した検討の一環です。今後、具体的な変更案や新しい名称について議論が進められ、大学の未来を形作る重要な動きとなると考えられます。</p>
             </div>
             <div class="news-card">
-                <h3 style="margin:10px 0;"><a href="https://news.google.com/rss/articles/CBMifEFVX3lxTE9peE1laTR3eXlrd3EzeGtVa1h2Ymw2YkRxd0E0SzZsUlVYTllLNURYVkJENE84Q3dfLUZXYWo2ekNDVTF0MGQ4b29CWk92ck9RY1ZMOWs1UUloSkllcFBWWXl6Zm42WHE2Qll6S1pjY2kyd1BpMEdvbmJvd2s?oc=5" target="_blank" style="text-decoration:none; color:#1a0dab;">タイ高等教育・科学・研究・イノベーション省の代表団が熊本大学を訪問 - kumamoto-u.ac.jp</a></h3>
-                <p>タイの教育・科学技術政策を担う「<span class="glossary-term" title="高校を卒業した人が進む、大学や専門学校などでの専門的な教育のことです。より深い知識や技術を身につけることを目的としています。">高等教育</span>・科学・研究・<span class="glossary-term" title="新しい技術やアイデアを生み出し、それまでになかった製品やサービス、仕組みを作り出すことを指します。社会に大きな変化や価値をもたらす取り組みです。">イノベーション</span>省」の代表団が、国際的な学術交流や研究協力を深めるため、熊本大学を訪問しました。この訪問では、特に科学技術分野における人材育成や共同研究の可能性について話し合われた模様です。両機関の連携がさらに強化され、将来的に教育や科学技術の発展に繋がることが期待されます。</p>
+                <h3><a href="https://news.google.com/rss/articles/CBMifEFVX3lxTE9peE1laTR3eXlrd3EzeGtVa1h2Ymw2YkRxd0E0SzZsUlVYTllLNURYVkJENE84Q3dfLUZXYWo2ekNDVTF0MGQ4b29CWk92ck9RY1ZMOWs1UUloSkllcFBWWXl6Zm42WHE2Qll6S1pjY2kyd1BpMEdvbmJvd2s?oc=5" target="_blank">タイ高等教育・科学・研究・イノベーション省の代表団が熊本大学を訪問 - kumamoto-u.ac.jp</a></h3>
+                <p>タイの高等教育・科学・研究・<span class="glossary-term" data-title="新しい技術やアイデアを生み出し、社会に新しい価値を創造することです。例えば、新しい商品やサービス、より良い仕組みなどを開発して社会の発展に貢献する活動を指します。">イノベーション</span>省の代表団が、<span class="glossary-term" data-title="大学や研究機関が互いに教員や学生を派遣したり、共同で研究を行ったりするなど、学問分野での活発なやり取りを指します。これにより、知識や文化の理解が深まります。">学術交流</span>や科学技術分野での協力を強化するため、日本の熊本大学を訪問しました。この訪問は、両国間における共同研究や人材育成の推進を目的としています。今後、教育や研究における国際的な連携が一層進むことが期待されます。</p>
             </div></div>
 </body>
 </html>
