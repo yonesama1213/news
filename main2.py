@@ -56,11 +56,9 @@ all_categories_html = ""
 headers = {"User-Agent": "Mozilla/5.0"}
 
 for i, (label, query) in enumerate(CATEGORIES.items()):
-    # タブボタンの生成
     active_btn = "active" if i == 0 else ""
     tab_buttons_html += f'<button class="tab-btn {active_btn}" onclick="showCategory(\'{label}\')">{label}</button>'
     
-    # カテゴリごとのセクション
     display_style = "block" if i == 0 else "none"
     category_html = f'<div id="{label}" class="category-section" style="display:{display_style};">'
     
@@ -69,7 +67,7 @@ for i, (label, query) in enumerate(CATEGORIES.items()):
         time.sleep(1)
         res = requests.get(url, headers=headers, timeout=15)
         root = ET.fromstring(res.text)
-        items = root.findall('.//item')[:3]  # ✅ 各カテゴリ上位3件を取得
+        items = root.findall('.//item')[:3] 
         
         for art in items:
             title, link = art.find('title').text, art.find('link').text
@@ -79,15 +77,15 @@ for i, (label, query) in enumerate(CATEGORIES.items()):
             if ai_data:
                 summary = ai_data["summary"]
                 for g in ai_data.get("glossary", []):
-                    # 専門用語にホバーチップを適用
-                    summary = summary.replace(g['word'], f'<span class="glossary-term" title="{g["def"]}">{g["word"]}</span>')
+                    # title属性ではなく、独自CSS用のdata-title属性を使用
+                    summary = summary.replace(g['word'], f'<span class="glossary-term" data-title="{g["def"]}">{g["word"]}</span>')
                 content_html = f"<p>{summary}</p>"
             else:
                 content_html = f"<p style='color:#666;'>※要約を取得できませんでした。</p>"
 
             category_html += f"""
             <div class="news-card">
-                <h3 style="margin:10px 0;"><a href="{link}" target="_blank" style="text-decoration:none; color:#1a0dab;">{title}</a></h3>
+                <h3><a href="{link}" target="_blank">{title}</a></h3>
                 {content_html}
             </div>"""
     except Exception as e:
@@ -96,7 +94,7 @@ for i, (label, query) in enumerate(CATEGORIES.items()):
     category_html += "</div>"
     all_categories_html += category_html
 
-# --- HTML テンプレート (CSSとJavaScriptを含む) ---
+# --- HTML 生成 ---
 JST = timezone(timedelta(hours=+9), 'JST')
 now = datetime.now(JST).strftime('%Y-%m-%d %H:%M:%S')
 
@@ -106,24 +104,55 @@ template = f"""
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AIニュースダッシュボード</title>
+    <title>AIニュース解説</title>
     <style>
         body {{ background:#f8f9fa; font-family:sans-serif; padding:20px; max-width:800px; margin:auto; color:#202124; }}
         h1 {{ border-left: 5px solid #1a73e8; padding-left: 15px; }}
         .tab-container {{ display: flex; gap: 8px; margin-bottom: 20px; overflow-x: auto; padding-bottom: 5px; }}
         .tab-btn {{ padding: 10px 18px; border: none; border-radius: 20px; background: #e8eaed; cursor: pointer; white-space: nowrap; font-weight: bold; transition: 0.3s; }}
         .tab-btn.active {{ background: #1a73e8; color: white; }}
+        
         .news-card {{ background:white; padding:20px; border-radius:12px; margin-bottom:20px; box-shadow:0 2px 8px rgba(0,0,0,0.05); border: 1px solid #dadce0; }}
-        .glossary-term {{ color:#d93025; border-bottom:2px dotted; cursor:help; font-weight: bold; }}
+        .news-card h3 a {{ text-decoration:none; color:#1a0dab; }}
+
+        /* 専門用語の吹き出しカスタマイズ */
+        .glossary-term {{
+            color:#d93025;
+            border-bottom:2px dotted;
+            cursor:help;
+            font-weight: bold;
+            position: relative;
+            display: inline-block;
+        }}
+
+        .glossary-term::after {{
+            content: attr(data-title);
+            display: none;
+            position: absolute;
+            bottom: 130%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #333;
+            color: #fff;
+            padding: 12px 16px;
+            border-radius: 8px;
+            width: 260px;
+            font-size: 1.1rem; /* ✅ 文字を大きく設定 */
+            line-height: 1.6;
+            z-index: 100;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }}
+
+        .glossary-term:hover::after {{
+            display: block;
+        }}
+        
         small {{ color: #5f6368; }}
     </style>
     <script>
         function showCategory(catId) {{
-            // すべてのセクションを隠す
             document.querySelectorAll('.category-section').forEach(el => el.style.display = 'none');
-            // すべてのボタンからactiveを消す
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            // 選択されたものだけ表示
             document.getElementById(catId).style.display = 'block';
             event.currentTarget.classList.add('active');
         }}
