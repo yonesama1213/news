@@ -161,7 +161,7 @@ template = f"""
     </script>
 </head>
 <body>
-    <h1>🗞️ AI要約ダッシュボード</h1>
+    <h1>本日のニュース</h1>
     <p><small>最終更新: {now} (JST)</small></p>
     <div class="tab-container">{tab_buttons_html}</div>
     {all_categories_html}
