@@ -11,33 +11,24 @@ client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
 # カテゴリ設定
 CATEGORIES = {
-    "国内情勢": "日本 政治 国内",
-    "世界情勢": "国際 ニュース 世界",
-    "ビジネス": "経済 ビジネス 市場",
-    "テクノロジー": "IT テクノロジー AI",
-    "教育・科学": "教育 科学 研究"
+    "国内": "日本 政治 国内",
+    "国際": "国際 ニュース 世界",
+    "経済": "経済 ビジネス 市場",
+    "IT": "IT テクノロジー AI",
+    "教育": "教育 科学 研究"
 }
 
 def summarize_with_retry(title, max_retries=3):
     model_names = ["gemini-2.5-flash", "gemini-1.5-flash"]
     prompt = f"""
-    あなたはニュース解説者として、複雑な出来事を高校生にも伝わるように整理して説明してください。
-
-    【編集方針】
-    1. 語尾は「〜です」「〜ます」とし、正確かつ客観的に述べてください。
-    2. 全体で3文程度の簡潔な構成にしてください。
-
-    【用語解説（glossary）の選定基準】
-    - 解説する単語を 3つ〜4つ に増やしてください。
-    - 「日常語」は除外してください。（例：『会社』『会議』『発表』『計画』などは解説不要）
-    - 「社会、経済、科学、ITの専門用語」や、高校の教科書に出てくるような「重要語句」を優先的に選んでください。
-    - その用語を知らないと、ニュースの本質が理解できないものを抽出してください。
-
+    ニュース解説者として、高校生向けに短く解説してください。
+    【ルール】
+    1. 丁寧な言葉で、2文（最大でも3文）で要約してください。
+    2. 重要な専門用語を2つ選び、定義（glossary）を作ってください。日常語は除外。
     必ず以下のJSON形式のみで返答してください。
     {{"summary": "...", "glossary": [{{"word": "...", "def": "..."}}]}}
     タイトル: {title}
     """
-    
     for i in range(max_retries):
         current_model = model_names[i % len(model_names)]
         try:
@@ -47,79 +38,51 @@ def summarize_with_retry(title, max_retries=3):
             start, end = text.find('{'), text.rfind('}') + 1
             if start != -1 and end != 0:
                 data = json.loads(text[start:end])
-                if data.get("summary"):
-                    print(f"成功: {title[:15]}... ({i+1}回目)")
-                    return data
-        except Exception as e:
-            print(f"試行 {i+1}回目 失敗: {e}")
+                if data.get("summary"): return data
+        except: pass
         time.sleep(2)
     return None
 
 # --- メイン処理 ---
-tab_buttons_html = ""
-all_categories_html = ""
+all_articles_html = ""
 headers = {"User-Agent": "Mozilla/5.0"}
 
-for i, (label, query) in enumerate(CATEGORIES.items()):
-    active_btn = "active" if i == 0 else ""
-    tab_buttons_html += f'<button class="tab-btn {active_btn}" onclick="showCategory(\'{label}\')">{label}</button>'
-    
-    display_style = "block" if i == 0 else "none"
-    category_html = f'<div id="{label}" class="category-section" style="display:{display_style};">'
-    
-    # 1. まずは「24時間以内」で検索
+for label, query in CATEGORIES.items():
     url_target = f"https://news.google.com/rss/search?q={query}+when:24h&hl=ja&gl=JP&ceid=JP%3Aja"
-    
     try:
         time.sleep(1)
         res = requests.get(url_target, headers=headers, timeout=15)
         root = ET.fromstring(res.text)
-        items = root.findall('.//item')[:2]  # ✅ 各カテゴリ2件に制限
+        items = root.findall('.//item')[:2] # 各カテゴリ2件 = 合計10件
         
-        # 2. 24時間以内に記事がなければ全期間で再検索
         if not items:
-            print(f"{label}: 24時間以内の記事なし。全期間で再検索します。")
             url_all = f"https://news.google.com/rss/search?q={query}&hl=ja&gl=JP&ceid=JP%3Aja"
             res = requests.get(url_all, headers=headers, timeout=15)
             root = ET.fromstring(res.text)
             items = root.findall('.//item')[:2]
-        
-        if not items:
-            category_html += "<p style='color:#666;'>※表示できるニュースがありませんでした。</p>"
-        else:
-            for art in items:
-                title, link = art.find('title').text, art.find('link').text
-                
-                # ✅ API制限回避のために5秒待機
-                print(f"要約リクエスト中: {title[:15]}...")
-                time.sleep(5) 
-                
-                ai_data = summarize_with_retry(title)
-                
-                content_html = ""
-                if ai_data:
-                    summary = ai_data["summary"]
-                    for g in ai_data.get("glossary", []):
-                        summary = summary.replace(g['word'], f'<span class="glossary-term" data-title="{g["def"]}">{g["word"]}</span>')
-                    content_html = f"<p>{summary}</p>"
-                else:
-                    content_html = f"<p style='color:#666;'>※要約を取得できませんでした。次回更新をお待ちください。</p>"
 
-                category_html += f"""
-                <div class="news-card">
-                    <h3><a href="{link}" target="_blank">{title}</a></h3>
-                    {content_html}
-                </div>"""
+        for art in items:
+            title, link = art.find('title').text, art.find('link').text
+            time.sleep(5) 
+            ai_data = summarize_with_retry(title)
+            
+            if ai_data:
+                summary = ai_data["summary"]
+                for g in ai_data.get("glossary", []):
+                    summary = summary.replace(g['word'], f'<span class="glossary-term" data-title="{g["def"]}">{g["word"]}</span>')
                 
+                all_articles_html += f"""
+                <div class="news-card">
+                    <div class="cat-tag">{label}</div>
+                    <h3><a href="{link}" target="_blank">{title[:40]}...</a></h3>
+                    <p>{summary}</p>
+                </div>"""
     except Exception as e:
-        print(f"RSS Error in {label}: {e}")
-    
-    category_html += "</div>"
-    all_categories_html += category_html
+        print(f"Error in {label}: {e}")
 
 # --- HTML 生成 ---
 JST = timezone(timedelta(hours=+9), 'JST')
-now = datetime.now(JST).strftime('%Y-%m-%d %H:%M:%S')
+now = datetime.now(JST).strftime('%Y-%m-%d %H:%M')
 
 template = f"""
 <!DOCTYPE html>
@@ -127,68 +90,36 @@ template = f"""
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>本日のニュース要約</title>
+    <title>AI News 1-Page</title>
     <style>
-        body {{ background:#f8f9fa; font-family:sans-serif; padding:20px; max-width:800px; margin:auto; color:#202124; }}
-        h1 {{ border-left: 5px solid #1a73e8; padding-left: 15px; }}
-        .tab-container {{ display: flex; gap: 8px; margin-bottom: 20px; overflow-x: auto; padding-bottom: 5px; }}
-        .tab-btn {{ padding: 10px 18px; border: none; border-radius: 20px; background: #e8eaed; cursor: pointer; white-space: nowrap; font-weight: bold; transition: 0.3s; }}
-        .tab-btn.active {{ background: #1a73e8; color: white; }}
-        
-        .news-card {{ background:white; padding:20px; border-radius:12px; margin-bottom:20px; box-shadow:0 2px 8px rgba(0,0,0,0.05); border: 1px solid #dadce0; }}
-        .news-card h3 a {{ text-decoration:none; color:#1a0dab; }}
-
-        /* 専門用語の吹き出し */
-        .glossary-term {{
-            color:#d93025;
-            border-bottom:2px dotted;
-            cursor:help;
-            font-weight: bold;
-            position: relative;
-            display: inline-block;
-        }}
-
+        body {{ background:#f0f2f5; font-family:sans-serif; padding:15px; margin:0; color:#333; }}
+        header {{ text-align:center; margin-bottom:15px; }}
+        h1 {{ font-size: 1.4rem; margin:0; color:#1a73e8; }}
+        .grid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 12px; }}
+        .news-card {{ background:#fff; padding:12px; border-radius:8px; box-shadow:0 1px 3px rgba(0,0,0,0.1); font-size:0.9rem; position:relative; }}
+        .cat-tag {{ display:inline-block; background:#e8f0fe; color:#1a73e8; font-size:0.7rem; padding:2px 8px; border-radius:4px; font-weight:bold; }}
+        h3 {{ font-size:0.95rem; margin:8px 0; line-height:1.3; }}
+        h3 a {{ text-decoration:none; color:#1a0dab; }}
+        p {{ margin:0; line-height:1.4; color:#444; }}
+        .glossary-term {{ color:#d93025; border-bottom:1px dotted; cursor:help; font-weight:bold; }}
         .glossary-term::after {{
-            content: attr(data-title);
-            display: none;
-            position: absolute;
-            bottom: 130%;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #333;
-            color: #fff;
-            padding: 12px 16px;
-            border-radius: 8px;
-            width: 260px;
-            font-size: 1.1rem;
-            line-height: 1.6;
-            z-index: 100;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            content: attr(data-title); display:none; position:absolute; bottom:100%; left:5%; 
+            background:#333; color:#fff; padding:8px; border-radius:5px; width:90%; font-size:0.85rem; z-index:10;
         }}
-
-        .glossary-term:hover::after {{
-            display: block;
-        }}
-        
-        small {{ color: #5f6368; }}
+        .glossary-term:hover::after {{ display:block; }}
+        @media (max-width: 400px) {{ .grid {{ grid-template-columns: 1fr; }} }}
     </style>
-    <script>
-        function showCategory(catId) {{
-            document.querySelectorAll('.category-section').forEach(el => el.style.display = 'none');
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            document.getElementById(catId).style.display = 'block';
-            event.currentTarget.classList.add('active');
-        }}
-    </script>
 </head>
 <body>
-    <h1>🗞️ 本日のニュース</h1>
-    <p><small>最終更新: {now} (JST)</small></p>
-    <div class="tab-container">{tab_buttons_html}</div>
-    {all_categories_html}
+    <header>
+        <h1>🗞️ 本日のニュース要約</h1>
+        <small>{now} 更新</small>
+    </header>
+    <div class="grid">
+        {all_articles_html}
+    </div>
 </body>
 </html>
 """
-
 with open("index.html", "w", encoding="utf-8") as f:
     f.write(template)
