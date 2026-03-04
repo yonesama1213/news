@@ -22,15 +22,18 @@ def summarize_with_retry(title, max_retries=3):
     model_names = ["gemini-2.5-flash", "gemini-1.5-flash"]
     prompt = f"""
     あなたはニュース解説者として、複雑な出来事を高校生にも伝わるように整理して説明してください。
-   【編集方針】
+
+    【編集方針】
     1. 語尾は「〜です」「〜ます」とし、正確かつ客観的に述べてください。
     2. 全体で3文程度の簡潔な構成にしてください。
 
     【用語解説（glossary）の選定基準】
-    - 解説する単語を **3つ〜4つ** に増やしてください。
-    - **「日常語」は除外してください。**（例：『会社』『会議』『発表』『計画』などは解説不要）
-    - **「社会、経済、科学、ITの専門用語」**や、高校の公共・地理歴史・理科などの教科書に出てくるような**「重要語句」**を優先的に選んでください。
+    - 解説する単語を 3つ〜4つ に増やしてください。
+    - 「日常語」は除外してください。（例：『会社』『会議』『発表』『計画』などは解説不要）
+    - 「社会、経済、科学、ITの専門用語」や、高校の教科書に出てくるような「重要語句」を優先的に選んでください。
     - その用語を知らないと、ニュースの本質が理解できないものを抽出してください。
+
+    必ず以下のJSON形式のみで返答してください。
     {{"summary": "...", "glossary": [{{"word": "...", "def": "..."}}]}}
     タイトル: {title}
     """
@@ -64,32 +67,50 @@ for i, (label, query) in enumerate(CATEGORIES.items()):
     display_style = "block" if i == 0 else "none"
     category_html = f'<div id="{label}" class="category-section" style="display:{display_style};">'
     
-    url = f"https://news.google.com/rss/search?q={query}&hl=ja&gl=JP&ceid=JP%3Aja"
+    # 1. まずは「24時間以内」で検索
+    url_target = f"https://news.google.com/rss/search?q={query}+when:24h&hl=ja&gl=JP&ceid=JP%3Aja"
+    
     try:
         time.sleep(1)
-        res = requests.get(url, headers=headers, timeout=15)
+        res = requests.get(url_target, headers=headers, timeout=15)
         root = ET.fromstring(res.text)
-        items = root.findall('.//item')[:3] 
+        items = root.findall('.//item')[:2]  # ✅ 各カテゴリ2件に制限
         
-        for art in items:
-            title, link = art.find('title').text, art.find('link').text
-            ai_data = summarize_with_retry(title)
-            
-            content_html = ""
-            if ai_data:
-                summary = ai_data["summary"]
-                for g in ai_data.get("glossary", []):
-                    # title属性ではなく、独自CSS用のdata-title属性を使用
-                    summary = summary.replace(g['word'], f'<span class="glossary-term" data-title="{g["def"]}">{g["word"]}</span>')
-                content_html = f"<p>{summary}</p>"
-            else:
-                content_html = f"<p style='color:#666;'>※要約を取得できませんでした。</p>"
+        # 2. 24時間以内に記事がなければ全期間で再検索
+        if not items:
+            print(f"{label}: 24時間以内の記事なし。全期間で再検索します。")
+            url_all = f"https://news.google.com/rss/search?q={query}&hl=ja&gl=JP&ceid=JP%3Aja"
+            res = requests.get(url_all, headers=headers, timeout=15)
+            root = ET.fromstring(res.text)
+            items = root.findall('.//item')[:2]
+        
+        if not items:
+            category_html += "<p style='color:#666;'>※表示できるニュースがありませんでした。</p>"
+        else:
+            for art in items:
+                title, link = art.find('title').text, art.find('link').text
+                
+                # ✅ API制限回避のために5秒待機
+                print(f"要約リクエスト中: {title[:15]}...")
+                time.sleep(5) 
+                
+                ai_data = summarize_with_retry(title)
+                
+                content_html = ""
+                if ai_data:
+                    summary = ai_data["summary"]
+                    for g in ai_data.get("glossary", []):
+                        summary = summary.replace(g['word'], f'<span class="glossary-term" data-title="{g["def"]}">{g["word"]}</span>')
+                    content_html = f"<p>{summary}</p>"
+                else:
+                    content_html = f"<p style='color:#666;'>※要約を取得できませんでした。次回更新をお待ちください。</p>"
 
-            category_html += f"""
-            <div class="news-card">
-                <h3><a href="{link}" target="_blank">{title}</a></h3>
-                {content_html}
-            </div>"""
+                category_html += f"""
+                <div class="news-card">
+                    <h3><a href="{link}" target="_blank">{title}</a></h3>
+                    {content_html}
+                </div>"""
+                
     except Exception as e:
         print(f"RSS Error in {label}: {e}")
     
@@ -106,7 +127,7 @@ template = f"""
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AIニュース解説</title>
+    <title>本日のニュース要約</title>
     <style>
         body {{ background:#f8f9fa; font-family:sans-serif; padding:20px; max-width:800px; margin:auto; color:#202124; }}
         h1 {{ border-left: 5px solid #1a73e8; padding-left: 15px; }}
@@ -117,7 +138,7 @@ template = f"""
         .news-card {{ background:white; padding:20px; border-radius:12px; margin-bottom:20px; box-shadow:0 2px 8px rgba(0,0,0,0.05); border: 1px solid #dadce0; }}
         .news-card h3 a {{ text-decoration:none; color:#1a0dab; }}
 
-        /* 専門用語の吹き出しカスタマイズ */
+        /* 専門用語の吹き出し */
         .glossary-term {{
             color:#d93025;
             border-bottom:2px dotted;
@@ -139,7 +160,7 @@ template = f"""
             padding: 12px 16px;
             border-radius: 8px;
             width: 260px;
-            font-size: 1.1rem; /* ✅ 文字を大きく設定 */
+            font-size: 1.1rem;
             line-height: 1.6;
             z-index: 100;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
@@ -161,7 +182,7 @@ template = f"""
     </script>
 </head>
 <body>
-    <h1>本日のニュース</h1>
+    <h1>🗞️ 本日のニュース</h1>
     <p><small>最終更新: {now} (JST)</small></p>
     <div class="tab-container">{tab_buttons_html}</div>
     {all_categories_html}
