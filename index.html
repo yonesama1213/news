@@ -4,108 +4,83 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>本日のニュース要約</title>
+    <title>AI News 1-Page</title>
     <style>
-        body { background:#f8f9fa; font-family:sans-serif; padding:20px; max-width:800px; margin:auto; color:#202124; }
-        h1 { border-left: 5px solid #1a73e8; padding-left: 15px; }
-        .tab-container { display: flex; gap: 8px; margin-bottom: 20px; overflow-x: auto; padding-bottom: 5px; }
-        .tab-btn { padding: 10px 18px; border: none; border-radius: 20px; background: #e8eaed; cursor: pointer; white-space: nowrap; font-weight: bold; transition: 0.3s; }
-        .tab-btn.active { background: #1a73e8; color: white; }
-        
-        .news-card { background:white; padding:20px; border-radius:12px; margin-bottom:20px; box-shadow:0 2px 8px rgba(0,0,0,0.05); border: 1px solid #dadce0; }
-        .news-card h3 a { text-decoration:none; color:#1a0dab; }
-
-        /* 専門用語の吹き出し */
-        .glossary-term {
-            color:#d93025;
-            border-bottom:2px dotted;
-            cursor:help;
-            font-weight: bold;
-            position: relative;
-            display: inline-block;
-        }
-
+        body { background:#f0f2f5; font-family:sans-serif; padding:15px; margin:0; color:#333; }
+        header { text-align:center; margin-bottom:15px; }
+        h1 { font-size: 1.4rem; margin:0; color:#1a73e8; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 12px; }
+        .news-card { background:#fff; padding:12px; border-radius:8px; box-shadow:0 1px 3px rgba(0,0,0,0.1); font-size:0.9rem; position:relative; }
+        .cat-tag { display:inline-block; background:#e8f0fe; color:#1a73e8; font-size:0.7rem; padding:2px 8px; border-radius:4px; font-weight:bold; }
+        h3 { font-size:0.95rem; margin:8px 0; line-height:1.3; }
+        h3 a { text-decoration:none; color:#1a0dab; }
+        p { margin:0; line-height:1.4; color:#444; }
+        .glossary-term { color:#d93025; border-bottom:1px dotted; cursor:help; font-weight:bold; }
         .glossary-term::after {
-            content: attr(data-title);
-            display: none;
-            position: absolute;
-            bottom: 130%;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #333;
-            color: #fff;
-            padding: 12px 16px;
-            border-radius: 8px;
-            width: 260px;
-            font-size: 1.1rem;
-            line-height: 1.6;
-            z-index: 100;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            content: attr(data-title); display:none; position:absolute; bottom:100%; left:5%; 
+            background:#333; color:#fff; padding:8px; border-radius:5px; width:90%; font-size:0.85rem; z-index:10;
         }
-
-        .glossary-term:hover::after {
-            display: block;
-        }
-        
-        small { color: #5f6368; }
+        .glossary-term:hover::after { display:block; }
+        @media (max-width: 400px) { .grid { grid-template-columns: 1fr; } }
     </style>
-    <script>
-        function showCategory(catId) {
-            document.querySelectorAll('.category-section').forEach(el => el.style.display = 'none');
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            document.getElementById(catId).style.display = 'block';
-            event.currentTarget.classList.add('active');
-        }
-    </script>
 </head>
 <body>
-    <h1>🗞️ 本日のニュース</h1>
-    <p><small>最終更新: 2026-03-04 12:00:45 (JST)</small></p>
-    <div class="tab-container"><button class="tab-btn active" onclick="showCategory('国内情勢')">国内情勢</button><button class="tab-btn " onclick="showCategory('世界情勢')">世界情勢</button><button class="tab-btn " onclick="showCategory('ビジネス')">ビジネス</button><button class="tab-btn " onclick="showCategory('テクノロジー')">テクノロジー</button><button class="tab-btn " onclick="showCategory('教育・科学')">教育・科学</button></div>
-    <div id="国内情勢" class="category-section" style="display:block;">
+    <header>
+        <h1>🗞️ 本日のニュース要約</h1>
+        <small>2026-03-04 12:06 更新</small>
+    </header>
+    <div class="grid">
+        
                 <div class="news-card">
-                    <h3><a href="https://news.google.com/rss/articles/CBMiZ0FVX3lxTE8xM3JmclVhS3F1aWt3UUZKa1VmZndva2FOQU9XUG5UVkFYMUZkZWdVR1hfVWx5MUtzWXFXUlcwM09Jay12Nm9jbTRhUHNyTjE0aWt4aTM2aG1PMUhUN1UwLXl0OFpjU3M?oc=5" target="_blank">高市首相「イラン攻撃」持ち出し予算成立主張 野党は10会派で対抗 - 朝日新聞</a></h3>
-                    <p>高市首相は、国の重要な財政計画である<span class="glossary-term" data-title="国が1年間でどれくらいのお金を集め、それを何に使うかを細かく決める、国の経済活動の計画書です。">予算</span>を早く成立させる必要性を強調するため、中東のイランを巡る<span class="glossary-term" data-title="世界の国々の間で起こっている様々な出来事や、それぞれの国同士の関係性、特に外交や安全保障に関する状況のことです。">国際情勢</span>の緊張に言及しました。これに対し、政府の方針と異なる立場を取る<span class="glossary-term" data-title="国会で、現在の政府や与党（政権を担う政党）とは異なる立場を取り、政策を批判したり、別の政策を提案したりする政党やそのグループのことです。">野党</span>の主要な10の<span class="glossary-term" data-title="国会内で、同じような考え方や目的を持つ議員が集まって作るグループのことです。所属する政党が異なっても、共通の目標のために会派を結成することがあります。">会派</span>が、政府の<span class="glossary-term" data-title="国が1年間でどれくらいのお金を集め、それを何に使うかを細かく決める、国の経済活動の計画書です。">予算</span>案に対し異議を唱え、対抗する姿勢を示しています。これは、国会での<span class="glossary-term" data-title="国が1年間でどれくらいのお金を集め、それを何に使うかを細かく決める、国の経済活動の計画書です。">予算</span>審議が、<span class="glossary-term" data-title="世界の国々の間で起こっている様々な出来事や、それぞれの国同士の関係性、特に外交や安全保障に関する状況のことです。">国際情勢</span>を背景に複雑な議論となっている状況を表しています。</p>
+                    <div class="cat-tag">国内</div>
+                    <h3><a href="https://news.google.com/rss/articles/CBMiZ0FVX3lxTE8xM3JmclVhS3F1aWt3UUZKa1VmZndva2FOQU9XUG5UVkFYMUZkZWdVR1hfVWx5MUtzWXFXUlcwM09Jay12Nm9jbTRhUHNyTjE0aWt4aTM2aG1PMUhUN1UwLXl0OFpjU3M?oc=5" target="_blank">高市首相「イラン攻撃」持ち出し予算成立主張 野党は10会派で対抗 - 朝日新聞...</a></h3>
+                    <p>高市氏が中東情勢の緊迫化、具体的には「イラン攻撃」の可能性に触れ、国の予算を速やかに成立させる必要性を強く主張しました。これに対し、多くの野党<span class="glossary-term" data-title="議会内で、同じ理念や政策を持つ議員たちが集まって形成するグループのことです。">会派</span>が予算案への疑義を呈し、政府と対立する構図となっています。</p>
                 </div>
                 <div class="news-card">
-                    <h3><a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE5XUzdHSk9jRlRwcFBZY1Bua0pmOUUyYzJFTmNPSzU4eFdhVjdORmhyNzZrUDdXU3R2T2JvY0YwQkYwSjVJQnZ6R1lRSmtKbExuU3UzaEFHMHAwTUY4NjZJ?oc=5" target="_blank">イラン攻撃が日本株・為替に与える影響 原油高の長期化が今後の焦点 野村證券・池田雄之輔 - nomura.co.jp</a></h3>
-                    <p>中東のイランを巡る情勢不安が、日本の経済に影響を与えています。特に原油の価格が上昇し、これが続くと企業のコストが増え、<span class="glossary-term" data-title="日本の企業の株価をまとめたもので、日本経済の状況を表す指標の一つです。">日本株</span>の価格や円の価値（<span class="glossary-term" data-title="異なる国の通貨を交換する際の比率（レート）のことで、円とドルの交換比率などがこれにあたります。">為替</span>）にも影響が出ると考えられます。今後の経済の行方は、この<span class="glossary-term" data-title="原油の価格が上昇している状態を指します。原油は様々な製品の材料やエネルギー源になるため、価格が上がると多くの企業のコスト増や物価上昇につながります。">原油高</span>がどれだけ長く続くかにかかっています。</p>
-                </div></div><div id="世界情勢" class="category-section" style="display:none;">
-                <div class="news-card">
-                    <h3><a href="https://news.google.com/rss/articles/CBMigAFBVV95cUxPVXhiTVBRLUxHS2pkcmVTbENucjR4SFNBeUJHVnRldEwxeHk0YWNDNXB6Q0pOam9iTmZGcWRzOGlncGZJcTdvU0MyVVd2QkJXVGd1LXBPU3E0Tkh0TmFUNUZkQXhobTFFQ2ZzbkthU1FSbGVLeXQ5VzhiLTJFaHJLVA?oc=5" target="_blank">米の対外ポジション弱い、ドルはなお世界経済の「心臓」＝ＩＭＦ - Reuters</a></h3>
-                    <p>国際通貨基金（IMF）は、アメリカ経済に関する報告書を発表しました。その中で、アメリカが他国に対する経済的な立場（<span class="glossary-term" data-title="ある国が、外国に対してどれだけの資産（投資や貯蓄など）を持っていて、逆にどれだけの負債（借金など）を抱えているかを示す経済状況のことです。このポジションが「弱い」とは、外国に対する負債が増えている状態などを指します。">対外ポジション</span>）を弱めていると指摘しながらも、アメリカドルが依然として世界経済の中心的な通貨として非常に重要な役割を担っていることを強調しています。これは、アメリカの経済状況が変化しても、ドルが世界の金融システムに与える影響は大きいままであることを示しています。</p>
+                    <div class="cat-tag">国内</div>
+                    <h3><a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE5XUzdHSk9jRlRwcFBZY1Bua0pmOUUyYzJFTmNPSzU4eFdhVjdORmhyNzZrUDdXU3R2T2JvY0YwQkYwSjVJQnZ6R1lRSmtKbExuU3UzaEFHMHAwTUY4NjZJ?oc=5" target="_blank">イラン攻撃が日本株・為替に与える影響 原油高の長期化が今後の焦点 野村證券・池田...</a></h3>
+                    <p>イランによる攻撃は、日本の株式市場や<span class="glossary-term" data-title="異なる国の通貨を交換する際の取引や、その交換比率を指します。例えば、円とドルを交換する際のレートなどです。">為替</span>相場に影響を及ぼしており、今後、原油価格の高騰が長期化するかが日本経済の大きな焦点となります。</p>
                 </div>
                 <div class="news-card">
-                    <h3><a href="https://news.google.com/rss/articles/CBMia0FVX3lxTFBuRTVaczh0ek1iT3JyQl9kcmNpd2ctSXNBTnBrX3loSGZoWGtWLUFVYUZrNURnNFdubk5oSjhYc2NhdFY0TnV0X1cyUUhBbWpfaHFuM2JHV1hKX19abHpaWlotcFB5bncyU09V?oc=5" target="_blank">au Starlink Direct、世界初の海外ローミング接続を開始 - KDDI ニュースルーム</a></h3>
-                    <p>KDDIが、宇宙にある人工衛星を利用して、携帯電話が直接通信できる「au Starlink Direct to Cell」サービスを海外で接続することに成功しました。
-これは、地上に基地局がない場所でも、携帯電話が直接衛星とつながり、電話やメッセージを送受信できる「海外<span class="glossary-term" data-title="契約している通信会社以外の通信会社の設備や、異なる通信方式の設備を利用して、電話やインターネット接続を行うことです。特に「海外ローミング」は、海外旅行中に自分の携帯電話をそのまま利用できるサービスを指します。">ローミング接続</span>」を実現した世界初の事例です。
-この技術により、これまで電波が届かなかった山間部や海上、災害時などでも、緊急時の通信手段が確保できるようになることが期待されます。</p>
-                </div></div><div id="ビジネス" class="category-section" style="display:none;">
-                <div class="news-card">
-                    <h3><a href="https://news.google.com/rss/articles/CBMikgFBVV95cUxPYXpUaDdsVVNVcWdTVzEtTi04REtrUnRPd01fTWVpWDdaZldZMHVzRnhoT1ZTSjVjRkZuVk5rb2hOZnRLSTRPaGpJYlJaRnQ5aWRtVzdfTzVFNkNfSW5hWEdpT1hoLWphLS1RYU91aF9keElRRWVXTkpxRlU2VmFsUEdXVEVWeTRJVloyVFZXR0Z2dw?oc=5" target="_blank">ＷＢＳ(ＢＳテレ東、2026/3/4 23:00 OA)の番組情報ページ - tv-tokyo.co.jp</a></h3>
-                    <p><span class="glossary-term" data-title="ある国や地域の金融システム全体を管理し、通貨の価値を安定させる役割を持つ機関のことです。日本では日本銀行がこれにあたります。">中央銀行</span>は、物価が持続的に上昇するインフレーションを抑えるため、基準となる<span class="glossary-term" data-title="<span class="glossary-term" data-title="ある国や地域の金融システム全体を管理し、通貨の価値を安定させる役割を持つ機関のことです。日本では日本銀行がこれにあたります。">中央銀行</span>が物価の安定や経済の調整のために設定する、金融市場の基準となる金利のことです。この金利が、銀行の貸し出し金利などに影響を与えます。">政策金利</span>の引き上げを決定しました。この利上げによって、企業がお金を借りて新しい事業を始める際のコストや、皆さんが将来家を購入する際の住宅ローンの金利などが上がる可能性があります。今回の決定が、今後の経済全体の動きにどのような影響を与えるか、引き続き注目されています。</p>
+                    <div class="cat-tag">国際</div>
+                    <h3><a href="https://news.google.com/rss/articles/CBMigAFBVV95cUxPVXhiTVBRLUxHS2pkcmVTbENucjR4SFNBeUJHVnRldEwxeHk0YWNDNXB6Q0pOam9iTmZGcWRzOGlncGZJcTdvU0MyVVd2QkJXVGd1LXBPU3E0Tkh0TmFUNUZkQXhobTFFQ2ZzbkthU1FSbGVLeXQ5VzhiLTJFaHJLVA?oc=5" target="_blank">米の対外ポジション弱い、ドルはなお世界経済の「心臓」＝ＩＭＦ - Reuters...</a></h3>
+                    <p>国際通貨基金（IMF）の発表によると、アメリカは他国との資産や負債のバランスが少し弱い状況ですが、米ドルは依然として世界の経済活動において非常に重要な役割を担っている、という内容です。</p>
                 </div>
                 <div class="news-card">
-                    <h3><a href="https://news.google.com/rss/articles/CBMiY0FVX3lxTE02WVhzcENfaXg3TEtudjlfSzdNX3ROSTJZZWJUQ1d3WGk2TVdsQU1RTzVsSjIteWlOREQ1R3lVcE5ZbzFZS0JtVzh6dnBMSFFxQVdMTnZ6ZEZVVDNaa3l4dTdGZw?oc=5" target="_blank">東京円、157円台後半 - nippon.com</a></h3>
-                    <p>本日の東京<span class="glossary-term" data-title="世界中の通貨が売買される市場のことで、銀行や企業などが参加し、為替レートが常に変動しています。東京外国為替市場はその主要な拠点の一つです。">外国為替市場</span>では、円が対ドルで1ドル＝157円台後半で取引されました。これは円の価値が他の通貨、特にドルに対して低い「<span class="glossary-term" data-title="自国の通貨（円）の価値が、外国の通貨（ドルなど）に対して下がることです。これにより、同じ金額のドルを買うのに、より多くの円が必要になります。">円安</span>」の状態が続いていることを示しています。<span class="glossary-term" data-title="自国の通貨（円）の価値が、外国の通貨（ドルなど）に対して下がることです。これにより、同じ金額のドルを買うのに、より多くの円が必要になります。">円安</span>が進むと、海外からの輸入品の価格が上がるなど、私たちの生活にも影響を及ぼす可能性があります。</p>
-                </div></div><div id="テクノロジー" class="category-section" style="display:none;">
-                <div class="news-card">
-                    <h3><a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTFBVXzZsRm1nX3hoYVlaZE42aWs3aGdRNmthZVUtb1RjQ3VpNXhRWkxxZXlBZW5uQzBQeUdVYVlfeGxjcE9QaVc4Z0ZiblZFLXMxVGc5MjMtazFVTktlYk1fY2tEdWMtQVYw?oc=5" target="_blank">リコーとライズ・コンサルティング・グループ、AI利活用を支援する合弁会社を6月に設立 - マイナビニュース</a></h3>
-                    <p>複合機などを手掛けるリコーと、経営戦略の相談に乗るライズ・<span class="glossary-term" data-title="企業などが抱える悩みや課題に対し、専門家が解決策を考え、アドバイスしたり実行をサポートしたりする業務のことです。">コンサルティング</span>・グループは、<span class="glossary-term" data-title="人間の脳のように学習したり判断したりするコンピューター技術のことです。例えば、チャットボットや自動運転技術などに使われています。">AI（人工知能）</span>の<span class="glossary-term" data-title="あるものや技術を、単に使うだけでなく、最大限に活かして効果的に役立てることです。例えば、AIの能力をビジネスに深く取り入れることを指します。">利活用</span>を専門とする<span class="glossary-term" data-title="複数の会社が協力し、お金を出し合って共同で設立する会社のことです。それぞれの会社の得意なことを持ち寄って新しい事業を始めます。">合弁会社</span>を6月に設立します。
-この新会社は、企業がAI技術を事業に導入し、最大限に活用できるよう支援することが目的です。
-多くの企業がAIを効果的に使えるようサポートすることで、業務の効率化や新たなビジネスチャンスの創出に貢献することを目指します。</p>
+                    <div class="cat-tag">国際</div>
+                    <h3><a href="https://news.google.com/rss/articles/CBMia0FVX3lxTFBuRTVaczh0ek1iT3JyQl9kcmNpd2ctSXNBTnBrX3loSGZoWGtWLUFVYUZrNURnNFdubk5oSjhYc2NhdFY0TnV0X1cyUUhBbWpfaHFuM2JHV1hKX19abHpaWlotcFB5bncyU09V?oc=5" target="_blank">au Starlink Direct、世界初の海外ローミング接続を開始 - KD...</a></h3>
+                    <p>auを展開するKDDIが、SpaceX社の衛星通信サービス「<span class="glossary-term" data-title="SpaceX社が提供する、地上に基地局がなくても、既存のスマートフォンなどの端末が直接人工衛星と通信できるようにするサービスのことです。">Starlink Direct</span>」を使って、スマートフォンを直接衛星につなぎ、海外で通信することに世界で初めて成功しました。これにより、これまで携帯電話の電波が届かなかった場所でも、スマートフォンの利用が可能になる未来が期待されます。</p>
                 </div>
                 <div class="news-card">
-                    <h3><a href="https://news.google.com/rss/articles/CBMiZ0FVX3lxTE4tazRKYTlHWnhGeHhvRWZJM053bHVaaExPZ1NMdjNnTm5aeHZOTlNXNVdIbW5jdm5zRzFkS0lDRVRPeUJ4b3c1NUVEYXUwS0lkQlNyYUgxOEpKZy1xQVphZmZNY0ZPeWM?oc=5" target="_blank">新連載「歌うテックニュース」スタート。AIが作った歌と解説画像でNVIDIAの歴史を学ぼう（西川善司） - テクノエッジ TechnoEdge</a></h3>
-                    <p>テクノエッジというウェブメディアで、<span class="glossary-term" data-title="機械が人間のように学習し、推論し、問題を解決する能力を持つ技術のことです。近年、画像生成や音声認識など幅広い分野で活用されています。">AI（人工知能）</span>が作った歌と解説画像を用いて企業の歴史を学ぶ新連載「歌うテックニュース」が始まりました。この連載では、特に高性能な<span class="glossary-term" data-title="電気を通したり通さなかったりする性質を持つ物質で、コンピューターやスマートフォンなどの電子機器の頭脳となる集積回路（ICチップ）を作るのに不可欠な材料や部品です。">半導体</span>を開発するNVIDIA社の歴史を、歌と視覚的な情報を通して楽しく学ぶことができます。AI技術を活用することで、複雑な情報を分かりやすく、そして魅力的に伝える新しい試みです。</p>
-                </div></div><div id="教育・科学" class="category-section" style="display:none;">
-                <div class="news-card">
-                    <h3><a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE5sLS1yZEpmTXpCVWNzRUVIYURqT2JtQ2lUVjZrcjlrTzN3Smh6STVPajB5ZHhqbmRUR0N0NndyTjdsTkZoU3ZBRTFydHEzeVNpeXdlcjM5dDVROUowVjJj?oc=5" target="_blank">情報データ科学部第2回データ分析ハッカソン成果発表会開催 - nagasaki-u.ac.jp</a></h3>
-                    <p>長崎大学の情報<span class="glossary-term" data-title="統計学、コンピュータ科学、人工知能などの知識を組み合わせて、大量のデータから新たな知見や価値を生み出し、社会課題の解決やビジネスに役立てることを目指す学問分野です。">データ科学</span>部が、<span class="glossary-term" data-title="大量の情報（データ）の中から、統計的な手法やコンピュータ技術を使って、意味のあるパターンや傾向、隠れた関係性などを見つけ出す作業のことです。">データ分析</span>の技術を競い合う「<span class="glossary-term" data-title="プログラマーやデザイナーなどがチームを組み、与えられたテーマに対して短期間で集中的にアイデアを出し、プログラミングや開発を行い、その成果を競い合うイベントのことです。">ハッカソン</span>」を開催し、その成果を発表しました。学生たちは与えられたデータから社会や地域の課題を見つけ出し、プログラミングや分析を通じて解決策を提案しました。この成果発表会では、学生たちがチームで取り組んだ独創的なアイデアや分析結果が披露されました。</p>
+                    <div class="cat-tag">経済</div>
+                    <h3><a href="https://news.google.com/rss/articles/CBMiT0FVX3lxTFBJeUx2dll6N3FxM1BBbnZZVk1NUHNSc1hlMFVETWFzd2g3WnZXa2FjWW55WVBnTVNuU3N3Z0tvemxRb0RGWnVvMnpHXzQxWE0?oc=5" target="_blank">日本の建設廃棄物リサイクル市場規模は2034年までに6兆439億5330万米ドル...</a></h3>
+                    <p>日本の<span class="glossary-term" data-title="建設工事の過程で発生する、木材、コンクリート、アスファルトなどの廃棄物のこと。">建設廃棄物</span>リサイクル市場が、2034年には6兆ドルを超える規模にまで成長する見込みというニュースです。これは、建設現場から出るごみを減らし、資源として再利用する取り組みがこれからさらに活発になることを示しています。</p>
                 </div>
                 <div class="news-card">
-                    <h3><a href="https://news.google.com/rss/articles/CBMicEFVX3lxTE5kZGhtOVZIY2VXX205U1A2cXg2aXY1WEFhVFgxTmtoZWFhaFJjQ1UtN3VmUXBaREM2R256Z0tDTk9KTlVzMGR5U1RWWnduNDBITVFvUTBoUzdlc3hMWXZYZ2kxajJ1eTA0Y19ERE1ZS2s?oc=5" target="_blank">2027年度 横浜市立大学 国際教養学部・国際商学部・データサイエンス学部の新カリキュラムについて - yokohama-cu.ac.jp</a></h3>
-                    <p>横浜市立大学は2027年度に、国際教養学部、国際商学部、<span class="glossary-term" data-title="統計学や情報科学、人工知能などの知識や技術を用いて、膨大なデータから新たな知見や価値を発見し、問題解決に役立てる学問分野のことです。">データサイエンス</span>学部において新しい<span class="glossary-term" data-title="学校や大学などの教育機関で、何を、どのように学ぶかという教育内容や、その順序などを定めた計画のことです。">カリキュラム</span>を開始します。これは、社会の<span class="glossary-term" data-title="経済、文化、情報などが国境を越えて世界中で一体化し、人々の暮らしや社会のつながりが地球規模で強まる現象のことです。">グローバル化</span>や情報化に対応するため、各学部で専門性と<span class="glossary-term" data-title="複数の異なる学問分野や専門領域の知識・視点を組み合わせて、研究や教育を行うことです。一つの分野だけでは解決できない複雑な問題に対応するために重要とされます。">学際性</span>を高める教育内容へと刷新するものです。この変更により、学生は現代社会で活躍するためのより実践的な学びを深めることができます。</p>
-                </div></div>
+                    <div class="cat-tag">経済</div>
+                    <h3><a href="https://news.google.com/rss/articles/CBMiY0FVX3lxTE02WVhzcENfaXg3TEtudjlfSzdNX3ROSTJZZWJUQ1d3WGk2TVdsQU1RTzVsSjIteWlOREQ1R3lVcE5ZbzFZS0JtVzh6dnBMSFFxQVdMTnZ6ZEZVVDNaa3l4dTdGZw?oc=5" target="_blank">東京円、157円台後半 - nippon.com...</a></h3>
+                    <p>今日の東京市場では、日本のお金である円が、アメリカのお金ドルに対して1ドルあたり157円台後半で取引され、円の価値が低い「<span class="glossary-term" data-title="日本のお金である円の価値が、外国のお金（ドルなど）に対して相対的に安くなっている状態を指します。">円安</span>」の状態が続いています。この<span class="glossary-term" data-title="日本のお金である円の価値が、外国のお金（ドルなど）に対して相対的に安くなっている状態を指します。">円安</span>は、輸入品の価格が上がるといった形で、私たちの生活にも影響を与えることがあります。</p>
+                </div>
+                <div class="news-card">
+                    <div class="cat-tag">IT</div>
+                    <h3><a href="https://news.google.com/rss/articles/CBMiWkFVX3lxTE5Gc3Y1T1JTT09xSDNLdXNfbzZBcEEzNXZaaUJMbjJ2bXFfYnNaYnVlS3lfZXc3MHg3Tmp0OHZkSXYzSmthdHYyZGlSSmx0c0pDNTJkT1hNRkRfUQ?oc=5" target="_blank">さくらインターネット、AI人材育成のための「さくらのAI検定」設立 - マイナビ...</a></h3>
+                    <p>さくらインターネットという会社が、AI技術を扱う人を育てるため、「さくらのAI検定」という新しい試験を始めます。これは、皆さんのような若い世代が将来AI分野で活躍できるよう、知識やスキルを証明する手助けとなるものです。</p>
+                </div>
+                <div class="news-card">
+                    <div class="cat-tag">IT</div>
+                    <h3><a href="https://news.google.com/rss/articles/CBMiZ0FVX3lxTE4tazRKYTlHWnhGeHhvRWZJM053bHVaaExPZ1NMdjNnTm5aeHZOTlNXNVdIbW5jdm5zRzFkS0lDRVRPeUJ4b3c1NUVEYXUwS0lkQlNyYUgxOEpKZy1xQVphZmZNY0ZPeWM?oc=5" target="_blank">新連載「歌うテックニュース」スタート。AIが作った歌と解説画像でNVIDIAの歴...</a></h3>
+                    <p>テクノエッジで始まった新連載「歌うテックニュース」では、AIが作った歌と解説画像を使って、半導体メーカーNVIDIAの歴史を楽しく学べます。最先端のAI技術と企業の歴史を同時に学べる、高校生の皆さんにもおすすめの新しいコンテンツです。</p>
+                </div>
+                <div class="news-card">
+                    <div class="cat-tag">教育</div>
+                    <h3><a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE5sLS1yZEpmTXpCVWNzRUVIYURqT2JtQ2lUVjZrcjlrTzN3Smh6STVPajB5ZHhqbmRUR0N0NndyTjdsTkZoU3ZBRTFydHEzeVNpeXdlcjM5dDVROUowVjJj?oc=5" target="_blank">情報データ科学部第2回データ分析ハッカソン成果発表会開催 - nagasaki-...</a></h3>
+                    <p>長崎大学の情報データ科学部が、<span class="glossary-term" data-title="大量のデータの中から意味のある情報やパターンを見つけ出し、問題解決や未来の予測に役立てる技術のことです。">データ分析</span>の技術を競う「<span class="glossary-term" data-title="短期間に集まって、チームでアイデアを出し合いながら、特定のテーマに沿ったソフトウェアやサービスなどを集中的に開発するイベントのことです。">ハッカソン</span>」の成果発表会を開催しました。学生の皆さんがチームを組んで、データを使った課題解決に取り組み、その成果を披露したんですよ。</p>
+                </div>
+                <div class="news-card">
+                    <div class="cat-tag">教育</div>
+                    <h3><a href="https://news.google.com/rss/articles/CBMicEFVX3lxTE5kZGhtOVZIY2VXX205U1A2cXg2aXY1WEFhVFgxTmtoZWFhaFJjQ1UtN3VmUXBaREM2R256Z0tDTk9KTlVzMGR5U1RWWnduNDBITVFvUTBoUzdlc3hMWXZYZ2kxajJ1eTA0Y19ERE1ZS2s?oc=5" target="_blank">2027年度 横浜市立大学 国際教養学部・国際商学部・データサイエンス学部の新カ...</a></h3>
+                    <p>横浜市立大学が2027年度から、国際教養学部、国際商学部、<span class="glossary-term" data-title="たくさんのデータを使って、そこから役立つ情報を見つけ出し、社会の問題を解決したり、新しい価値を生み出したりする学問分野のことです。統計やコンピューターの知識を使います。">データサイエンス</span>学部の<span class="glossary-term" data-title="大学などで、どのような授業をどの順番で学ぶか、全体的に決められた教育内容の計画のことです。">カリキュラム</span>を刷新します。これは、国際的な視点やデータ分析能力を学部横断的に学べるようにすることで、これからの社会で活躍できる人材を育成するためのものです。</p>
+                </div>
+    </div>
 </body>
 </html>
