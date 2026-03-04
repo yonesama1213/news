@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AIニュース解説</title>
+    <title>本日のニュース要約</title>
     <style>
         body { background:#f8f9fa; font-family:sans-serif; padding:20px; max-width:800px; margin:auto; color:#202124; }
         h1 { border-left: 5px solid #1a73e8; padding-left: 15px; }
@@ -15,7 +15,7 @@
         .news-card { background:white; padding:20px; border-radius:12px; margin-bottom:20px; box-shadow:0 2px 8px rgba(0,0,0,0.05); border: 1px solid #dadce0; }
         .news-card h3 a { text-decoration:none; color:#1a0dab; }
 
-        /* 専門用語の吹き出しカスタマイズ */
+        /* 専門用語の吹き出し */
         .glossary-term {
             color:#d93025;
             border-bottom:2px dotted;
@@ -37,7 +37,7 @@
             padding: 12px 16px;
             border-radius: 8px;
             width: 260px;
-            font-size: 1.1rem; /* ✅ 文字を大きく設定 */
+            font-size: 1.1rem;
             line-height: 1.6;
             z-index: 100;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
@@ -59,73 +59,53 @@
     </script>
 </head>
 <body>
-    <h1>本日のニュース</h1>
-    <p><small>最終更新: 2026-03-04 07:04:16 (JST)</small></p>
+    <h1>🗞️ 本日のニュース</h1>
+    <p><small>最終更新: 2026-03-04 12:00:45 (JST)</small></p>
     <div class="tab-container"><button class="tab-btn active" onclick="showCategory('国内情勢')">国内情勢</button><button class="tab-btn " onclick="showCategory('世界情勢')">世界情勢</button><button class="tab-btn " onclick="showCategory('ビジネス')">ビジネス</button><button class="tab-btn " onclick="showCategory('テクノロジー')">テクノロジー</button><button class="tab-btn " onclick="showCategory('教育・科学')">教育・科学</button></div>
     <div id="国内情勢" class="category-section" style="display:block;">
-            <div class="news-card">
-                <h3><a href="https://news.google.com/rss/articles/CBMiY0FVX3lxTE11TEliUGNWczBpNUsyRkRHZC1FMHhkaS1rMGQtVHNXMVFsXzNiSnJpYkVDVGNlMW1XMkdyZGh2WnEtczNxcU92cGZlcTBHSzFyTE1xa3NxXzBnLTlWSk5uN0NjWQ?oc=5" target="_blank">日本の首相は “UAE大統領の訪問よりも国内政治を優先した” - arabnews.jp</a></h3>
-                <p>日本の首相は、<span class="glossary-term" data-title="西アジアに位置する、複数の首長国からなる連邦国家です。石油や天然ガスなどの資源が豊富で、国際経済において重要な役割を果たしています。">アラブ首長国連邦（UAE）</span>の大統領による訪日よりも、国内の政治課題への対応を優先しました。これにより、日本の重要な<span class="glossary-term" data-title="国と国との間で、友好関係を築いたり、貿易や安全保障に関する交渉を行ったりする活動のことです。">外交</span>日程が変更された可能性があります。この決断は、今後の国際関係や国内の政治運営に対してさまざまな影響を与えると考えられます。</p>
-            </div>
-            <div class="news-card">
-                <h3><a href="https://news.google.com/rss/articles/CBMiZ0FVX3lxTE82eVNPcDF3a2lVM0NCOWdHYklQMjhDLUxKZWtBaHdMSHdzYTl4dTlWRHRLTzNRWlczUGtaR2VoQXVOcUZTYktfenNDM0dRRkRNQ3VSSzk1b2lhYk1aTjdwT3VXUU5VY1U?oc=5" target="_blank">右派勢力台頭、リベラル退潮…揺れる国際秩序と日本 政治記者座談会 - 朝日新聞</a></h3>
-                <p>現在、世界の多くの国で、保守的な考えを持つ「右派勢力」が力をつけ、「<span class="glossary-term" data-title="個人の自由や権利、平等を尊重し、多様な価値観を認めることを重視する自由主義的な考え方を持つ人々や政党のことです。社会の変化や改革を積極的に支持する傾向があります。">リベラル</span>」と呼ばれる自由主義的な考えを持つ勢力が勢いを失う動きが見られます。この変化は、国と国の関係や協力のあり方を定めてきた「国際秩序」を大きく揺るがしており、これまでの国際社会の安定が失われつつあります。日本も、外交や経済政策において、こうした国際情勢の変動にどのように対応していくかが問われています。</p>
-            </div>
-            <div class="news-card">
-                <h3><a href="https://news.google.com/rss/articles/CBMickFVX3lxTE1zRWxaYVFPV0ZjZmhpSzB0M2xIaUVpRG9scnJ0LTFwdzZGbnZxMWcxRUg1UGFNdmZnLVBwbzFkODVSZktZZXEtb2RMRnZfTkdFWjZTNmhaejhJQXNWaXphMVJUX2ppZkk4ZmVBTTFhVlF1UQ?oc=5" target="_blank">発表！２０２５年読者が選んだ日本１０大ニュース - 読売新聞オンライン</a></h3>
-                <p>読売新聞が毎年発表する「日本10大ニュース」は、その年に起きた数多くの出来事の中から、読者の皆さんが特に重要だと感じたニュースを投票によって選出したものです。この企画は、社会全体が何に関心を持ち、どのような出来事を重視しているのかを客観的に示す指標となります。発表されたニュースを振り返ることで、私たちを取り巻く世界で何が起こったのかを理解し、今後の社会について考える貴重な機会となるでしょう。</p>
-            </div></div><div id="世界情勢" class="category-section" style="display:none;">
-            <div class="news-card">
-                <h3><a href="https://news.google.com/rss/articles/CBMiZ0FVX3lxTE85X2JYcUI5WDBlNW9RWEhYNThhbmh5Y0hZNnM3S0QzdGd4bjNHWlBPdWt5X1FIOEhLR0Z0SWRqS0xYQmRYUVRfaXgzei1COVhwcmd0ZGRoZFo2bmxrb1N0czY3Z3RsRFU?oc=5" target="_blank">イラン攻撃、世界の反応 「危険な状況」「国際法の尊重を」 - 朝日新聞</a></h3>
-                <p>イランへの攻撃が報告され、これに対し、世界の多くの国々が強い懸念を示しています。**<span class="glossary-term" data-title="正式名称は国際連合です。世界の平和と安全の維持、国際協力の促進などを目的とする国際機関で、現在193の国が加盟しています。">国連</span>**事務総長や各国首脳は、中東地域のさらなる緊張激化を防ぐため、関係者に対し対話による事態の沈静化を強く求めている状況です。特に、**<span class="glossary-term" data-title="国家間の関係を規律する法のことです。<span class="glossary-term" data-title="正式名称は国際連合です。世界の平和と安全の維持、国際協力の促進などを目的とする国際機関で、現在193の国が加盟しています。">国連</span>憲章などで定められており、戦争や紛争時の行動、人権の保護などについて取り決めがあります。">国際法</span>**を尊重し、冷静な行動をとるよう、国際社会全体で呼びかけています。</p>
-            </div>
-            <div class="news-card">
-                <h3><a href="https://news.google.com/rss/articles/CBMif0FVX3lxTE9wR2RaREVrckgxVmpSWlN4Y2pKcnI4d01sVUxhdXhFWXdkWUlCVG8xcmxKeW5ORFVSVk41Y3FrNWJxTE9RYkY0VFBoODEwbzlXZjl2T0N3Z0hZRXI5QzEwaG0xb2tsbHpzaFQ1cjd5ZTd2VC1vWng3dHZwbnpsdjQ?oc=5" target="_blank">大阪国際女子マラソン・アジア選手権クロカン・世界大学クロカン いつにない経験を積む冬季も冷静に「地に足つけて1個ずつ」 - Yahoo!ニュース</a></h3>
-                <p>このニュースは、日本の女子マラソン選手が、大阪国際女子マラソン、アジア選手権<span class="glossary-term" data-title="陸上競技の一種で、整地されていない野山や森林などの不不整地を走り抜ける長距離走です。略して「クロカン」とも呼ばれます。">クロスカントリー</span>、世界大学<span class="glossary-term" data-title="陸上競技の一種で、整地されていない野山や森林などの不不整地を走り抜ける長距離走です。略して「クロカン」とも呼ばれます。">クロスカントリー</span>といった国際大会に出場し、貴重な経験を積んでいることを伝えています。選手たちは、通常とは異なる冬季の競技環境や強豪選手との対戦を通じて、自身の競技力を高めています。今後も、一つ一つの経験を冷静に分析し、着実に成長していく姿勢が示されています。</p>
-            </div>
-            <div class="news-card">
-                <h3><a href="https://news.google.com/rss/articles/CBMiT0FVX3lxTE91LWdSV3hXZUdDczQ2aXBBUWpHeElweFRpYjV0S0RjZlMtaEFMNFRCUDYzenBxamxIUlhrSy15emZHeHRWcmFQZG5TRk1qcUU?oc=5" target="_blank">京都発のミード、世界へ。 世界最大級のミード国際大会「Mead Madness Cup PRO 2026」 初挑戦でブロンズメダルをダブル受賞 - Newscast.jp</a></h3>
-                <p style='color:#666;'>※要約を取得できませんでした。</p>
-            </div></div><div id="ビジネス" class="category-section" style="display:none;">
-            <div class="news-card">
-                <h3><a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE1PblAwYmRVWHZ1S2R4bjhQdjZVWEdpS3B1N0lTeXR5Y3J5MUxfdGdNR0I0elFneFRzMzRMYUh6UkNOYXphMnhwcnd6TmdDdTlrNTdaTTBIT181Q0xMQTNnd1FwcDJGalVlcGc?oc=5" target="_blank">調査レポート『循環経済型ビジネス 事業創出・参入戦略』を発行 国内循環経済型ビジネス市場、2050年には683兆円規模へ - PR TIMES</a></h3>
-                <p style='color:#666;'>※要約を取得できませんでした。</p>
-            </div>
-            <div class="news-card">
-                <h3><a href="https://news.google.com/rss/articles/CBMiZkFVX3lxTFBGTHFLcVROZmQwM1lHWVJ5UFNrbmZWQXZ4VU9JdE0tUXJaWm9wRXlJbUZjOWo1aFRVd21UT201cy1qbWx4NVBmS3Zib3BFWURUSzA0S3Z3TEJlSVZkRmxfYzZSMjN4UQ?oc=5" target="_blank">蓄電所ビジネス市場に関する調査を実施（2025年） - yano.co.jp</a></h3>
-                <p>このニュースは、電気をためる大規模な施設である「<span class="glossary-term" data-title="電気を一時的に貯めておき、必要な時に供給するための大規模な施設です。大型バッテリーのような役割を果たし、電力の安定供給や<span class="glossary-term" data-title="太陽光、風力、水力、地熱など、自然の力を利用して繰り返し得られるエネルギー源のことです。化石燃料のように枯渇せず、温室効果ガスを排出しないため、地球環境に優しいとされています。">再生可能エネルギー</span>の有効活用に貢献します。">蓄電所</span>」が、今後どのような市場規模に成長していくかを調査したものです。
-特に、太陽光や風力といった「<span class="glossary-term" data-title="太陽光、風力、水力、地熱など、自然の力を利用して繰り返し得られるエネルギー源のことです。化石燃料のように枯渇せず、温室効果ガスを排出しないため、地球環境に優しいとされています。">再生可能エネルギー</span>」の導入が進む中で、発電量が不安定なこれらのエネルギーを安定して供給するために<span class="glossary-term" data-title="電気を一時的に貯めておき、必要な時に供給するための大規模な施設です。大型バッテリーのような役割を果たし、電力の安定供給や<span class="glossary-term" data-title="太陽光、風力、水力、地熱など、自然の力を利用して繰り返し得られるエネルギー源のことです。化石燃料のように枯渇せず、温室効果ガスを排出しないため、地球環境に優しいとされています。">再生可能エネルギー</span>の有効活用に貢献します。">蓄電所</span>の役割が重要になっています。
-<span class="glossary-term" data-title="電気を一時的に貯めておき、必要な時に供給するための大規模な施設です。大型バッテリーのような役割を果たし、電力の安定供給や<span class="glossary-term" data-title="太陽光、風力、水力、地熱など、自然の力を利用して繰り返し得られるエネルギー源のことです。化石燃料のように枯渇せず、温室効果ガスを排出しないため、地球環境に優しいとされています。">再生可能エネルギー</span>の有効活用に貢献します。">蓄電所</span>は、発電から消費までの電気の流れ全体を指す「<span class="glossary-term" data-title="発電所で作られた電気が、送電線や変電所、配電線などを通じて、各家庭や工場に届くまでの全ての設備と運用システムのことです。電力の安定供給を維持するために非常に重要なインフラです。">電力系統</span>」において「<span class="glossary-term" data-title="ある製品やサービスの供給量（提供できる量）と需要量（求められる量）が釣り合っている状態を指します。電力においては、発電量と消費量が常に一致していることが必要で、このバランスが崩れると停電の原因になります。">需給バランス</span>」を保ち、安定した電力供給を支える不可欠な存在として注目されています。</p>
-            </div>
-            <div class="news-card">
-                <h3><a href="https://news.google.com/rss/articles/CBMiY0FVX3lxTE5IbHBvM0hOMS13UWthdTFRejI1SjRNd2VIR1M0czA5a1JwU2RsUndmcVZwX183MHp2ZmlaVTk0N0MyOVgyWHNlU0NSUjFleVp5ellDNlNqeUZ4VDdTcDVnTElRZw?oc=5" target="_blank">米卸売物価2.9％上昇 1月、市場予想上回る - nippon.com</a></h3>
-                <p>アメリカの企業間で取引される商品の価格、つまり<span class="glossary-term" data-title="企業が別の企業に商品を売る際の価格のことで、最終的に消費者が買う商品の値段に影響します。">卸売物価</span>が1月に2.9％上昇しました。これは、消費者が最終的に買う商品の値段にも影響する、物価の動きを示す重要な<span class="glossary-term" data-title="国や地域の経済の状況を客観的に示すための、様々な統計データの総称です。">経済指標</span>の一つです。今回のデータは、事前の<span class="glossary-term" data-title="経済の専門家や金融機関が、これから発表される経済データについて事前に予測する数値のことです。">市場予想</span>を上回る上昇となり、アメリカの<span class="glossary-term" data-title="物価が継続的に上がり続け、お金の価値が下がってしまう経済状態を指します。">インフレ</span>（物価上昇）への懸念が引き続き根強いことを示しています。</p>
-            </div></div><div id="テクノロジー" class="category-section" style="display:none;">
-            <div class="news-card">
-                <h3><a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE5ZekNUeEZsYVA1MzBoZnV1ZU1mLUtmQ0lCT0lkd1JNalYzTmJuRXJNZ2hCclNqLXkxTjhWQ0E1SDdfSkhDaDhDT1MzSGFDV0lDcUlkR3pmUUlpZjliems5QzF6LUIyY1J5NGc?oc=5" target="_blank">有識者の「推し」は先行指標、見えてきたAfter AIのITインフラ技術 - 日経クロステック Active</a></h3>
-                <p style='color:#666;'>※要約を取得できませんでした。</p>
-            </div>
-            <div class="news-card">
-                <h3><a href="https://news.google.com/rss/articles/CBMickFVX3lxTFBYeTBacTZqa1BvSG1KZDZhc3h2d1JkeVhMOE0xdTkwcWlzblcyY0czOWg2R3pDTFVKWTZoX0FyTFR6QmFWNW9GUGRuYi1FVGVFejA1ME1UOXIwS2dETWpFRFVNMUNPMjQ3SV9lVzdyYTFPUQ?oc=5" target="_blank">2025年の戦略的テクノロジのトップ・トレンド - Gartner</a></h3>
-                <p>IT分野の調査・アドバイザリー企業であるGartnerが、2025年に企業が注目すべき重要な技術の傾向を発表しました。
-これは、今後のビジネスや社会に大きな影響を与える可能性のある、情報技術の主要な流れをまとめたものです。
-企業が未来の戦略を立てる上で参考にする情報であり、私たちの生活にも関わってくる技術動向を示しています。</p>
-            </div>
-            <div class="news-card">
-                <h3><a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE1JNm5POS1iTVBranQ4cHZha1RCaEVoSTRVbjZ1OVZrZWtSXzJjSjV6QlpjOXRIU3NvSG82VENuNTJWMW9JLVdKVVpDTnVkcU9RN28zNXZjQUNnamR4X0ktZ0tDM3RKNnpHZ1E?oc=5" target="_blank">Netskope、AI時代におけるIT部門と経営陣との関係を調査：AI利用で企業のITインフラへの要求が高まる、従来のテクノロジーはパフォーマンス・レジリエンス・セキュリティ面で苦戦 | Netskope Japan株式会社のプレスリリース - PR TIMES</a></h3>
-                <p style='color:#666;'>※要約を取得できませんでした。</p>
-            </div></div><div id="教育・科学" class="category-section" style="display:none;">
-            <div class="news-card">
-                <h3><a href="https://news.google.com/rss/articles/CBMickFVX3lxTE5kMjhBMGNxOHMxbDdySEYybTBCdlhfYl9yNTJHd2Z3Z24wSXpwai1MWF9kc3UydU02cERGUXBsYlpFNVN6dWw1M25ieUgybmJRTU5nMTJ1VHNZTV8zc0Zmc19iaDh6M2tTVzZsNnVjUkFKdw?oc=5" target="_blank">アズミー・マハーフザ ヨルダン教育大臣兼務高等教育・科学研究大臣の中村副大臣への表敬訪問 - mext.go.jp</a></h3>
-                <p>ヨルダンの教育大臣が日本の文部科学省の<span class="glossary-term" data-title="政府の大臣を補佐し、大臣が不在の際にはその職務を代行する重要な役割を担う役職です。">副大臣</span>を<span class="glossary-term" data-title="敬意を表す目的で、相手方の機関や人物を公式に訪れることです。<span class="glossary-term" data-title="国家間の関係を円滑に進めるための活動全般のことです。政府の代表者が他国の代表者と交渉や交流を行うことを指します。">外交</span>や公式な交流の場で用いられます。">表敬訪問</span>し、両国の教育や科学研究分野における<span class="glossary-term" data-title="複数の国や国際機関が、共通の目的のために協力して活動を進めることです。教育や科学研究など、多岐にわたる分野で行われます。">国際連携</span>の強化について意見交換が行われたとみられます。今回の交流は、国際社会の教育・研究発展に貢献する<span class="glossary-term" data-title="国家間の関係を円滑に進めるための活動全般のことです。政府の代表者が他国の代表者と交渉や交流を行うことを指します。">外交</span>関係の進展につながることが期待されています。</p>
-            </div>
-            <div class="news-card">
-                <h3><a href="https://news.google.com/rss/articles/CBMiXEFVX3lxTE1uaXdfVlY4bXltQWNoLVR3OVlsN2Z4Um94YjYzMnZUVWR2alRGcGFjaV9DTi1zTW9OMXRiMWJMRXJoT2ZTb21FOE9JSndZSVo1b1N1ckxVeWFDQmpi?oc=5" target="_blank">2027年度から人間社会科学研究科の名称を変更（構想中） - hiroshima-u.ac.jp</a></h3>
-                <p>広島大学では、2027年度から、現在の<span class="glossary-term" data-title="大学を卒業した人が、さらに高度な専門知識を学び、研究を行うための教育機関です。">大学院</span>の組織名である「<span class="glossary-term" data-title="人間と社会の多様な側面を研究する学問分野で、心理学、教育学、社会学、法学、経済学など、幅広い文系の領域を含みます。">人間社会科学</span><span class="glossary-term" data-title="大学院の中で、特定の専門分野ごとに教育や研究が行われる組織単位のことです。">研究科</span>」の名称を変更することを検討しています。これは、複雑化する社会の課題に、より専門的かつ柔軟に対応できるよう、教育と研究の内容を再編するための一歩です。新しい名称や具体的な組織のあり方はまだ決定していませんが、<span class="glossary-term" data-title="大学を卒業した人が、さらに高度な専門知識を学び、研究を行うための教育機関です。">大学院</span>の教育と研究の方向性を現代社会に合わせて進化させる取り組みと言えます。</p>
-            </div>
-            <div class="news-card">
-                <h3><a href="https://news.google.com/rss/articles/CBMifEFVX3lxTE9peE1laTR3eXlrd3EzeGtVa1h2Ymw2YkRxd0E0SzZsUlVYTllLNURYVkJENE84Q3dfLUZXYWo2ekNDVTF0MGQ4b29CWk92ck9RY1ZMOWs1UUloSkllcFBWWXl6Zm42WHE2Qll6S1pjY2kyd1BpMEdvbmJvd2s?oc=5" target="_blank">タイ高等教育・科学・研究・イノベーション省の代表団が熊本大学を訪問 - kumamoto-u.ac.jp</a></h3>
-                <p>タイの<span class="glossary-term" data-title="高等学校卒業後の教育全般を指し、主に大学、専門職大学、短期大学などで提供される専門的・学術的な教育のことです。">高等教育</span>を管轄する省の代表団が熊本大学を訪問しました。この訪問は、両国間での<span class="glossary-term" data-title="大学や研究機関が互いに研究者や学生を派遣・受け入れたり、共同で研究会やセミナーを開催したりして、知識や文化を交換する活動のことです。">学術交流</span>や<span class="glossary-term" data-title="複数の大学、企業、研究機関などが、共通の目的を持って協力し、資金や人材、設備などを出し合って一つの研究テーマを進める活動のことです。">共同研究</span>を深めるための重要な一歩となります。今後、教育や科学技術分野での協力関係がさらに進展することが期待されます。</p>
-            </div></div>
+                <div class="news-card">
+                    <h3><a href="https://news.google.com/rss/articles/CBMiZ0FVX3lxTE8xM3JmclVhS3F1aWt3UUZKa1VmZndva2FOQU9XUG5UVkFYMUZkZWdVR1hfVWx5MUtzWXFXUlcwM09Jay12Nm9jbTRhUHNyTjE0aWt4aTM2aG1PMUhUN1UwLXl0OFpjU3M?oc=5" target="_blank">高市首相「イラン攻撃」持ち出し予算成立主張 野党は10会派で対抗 - 朝日新聞</a></h3>
+                    <p>高市首相は、国の重要な財政計画である<span class="glossary-term" data-title="国が1年間でどれくらいのお金を集め、それを何に使うかを細かく決める、国の経済活動の計画書です。">予算</span>を早く成立させる必要性を強調するため、中東のイランを巡る<span class="glossary-term" data-title="世界の国々の間で起こっている様々な出来事や、それぞれの国同士の関係性、特に外交や安全保障に関する状況のことです。">国際情勢</span>の緊張に言及しました。これに対し、政府の方針と異なる立場を取る<span class="glossary-term" data-title="国会で、現在の政府や与党（政権を担う政党）とは異なる立場を取り、政策を批判したり、別の政策を提案したりする政党やそのグループのことです。">野党</span>の主要な10の<span class="glossary-term" data-title="国会内で、同じような考え方や目的を持つ議員が集まって作るグループのことです。所属する政党が異なっても、共通の目標のために会派を結成することがあります。">会派</span>が、政府の<span class="glossary-term" data-title="国が1年間でどれくらいのお金を集め、それを何に使うかを細かく決める、国の経済活動の計画書です。">予算</span>案に対し異議を唱え、対抗する姿勢を示しています。これは、国会での<span class="glossary-term" data-title="国が1年間でどれくらいのお金を集め、それを何に使うかを細かく決める、国の経済活動の計画書です。">予算</span>審議が、<span class="glossary-term" data-title="世界の国々の間で起こっている様々な出来事や、それぞれの国同士の関係性、特に外交や安全保障に関する状況のことです。">国際情勢</span>を背景に複雑な議論となっている状況を表しています。</p>
+                </div>
+                <div class="news-card">
+                    <h3><a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE5XUzdHSk9jRlRwcFBZY1Bua0pmOUUyYzJFTmNPSzU4eFdhVjdORmhyNzZrUDdXU3R2T2JvY0YwQkYwSjVJQnZ6R1lRSmtKbExuU3UzaEFHMHAwTUY4NjZJ?oc=5" target="_blank">イラン攻撃が日本株・為替に与える影響 原油高の長期化が今後の焦点 野村證券・池田雄之輔 - nomura.co.jp</a></h3>
+                    <p>中東のイランを巡る情勢不安が、日本の経済に影響を与えています。特に原油の価格が上昇し、これが続くと企業のコストが増え、<span class="glossary-term" data-title="日本の企業の株価をまとめたもので、日本経済の状況を表す指標の一つです。">日本株</span>の価格や円の価値（<span class="glossary-term" data-title="異なる国の通貨を交換する際の比率（レート）のことで、円とドルの交換比率などがこれにあたります。">為替</span>）にも影響が出ると考えられます。今後の経済の行方は、この<span class="glossary-term" data-title="原油の価格が上昇している状態を指します。原油は様々な製品の材料やエネルギー源になるため、価格が上がると多くの企業のコスト増や物価上昇につながります。">原油高</span>がどれだけ長く続くかにかかっています。</p>
+                </div></div><div id="世界情勢" class="category-section" style="display:none;">
+                <div class="news-card">
+                    <h3><a href="https://news.google.com/rss/articles/CBMigAFBVV95cUxPVXhiTVBRLUxHS2pkcmVTbENucjR4SFNBeUJHVnRldEwxeHk0YWNDNXB6Q0pOam9iTmZGcWRzOGlncGZJcTdvU0MyVVd2QkJXVGd1LXBPU3E0Tkh0TmFUNUZkQXhobTFFQ2ZzbkthU1FSbGVLeXQ5VzhiLTJFaHJLVA?oc=5" target="_blank">米の対外ポジション弱い、ドルはなお世界経済の「心臓」＝ＩＭＦ - Reuters</a></h3>
+                    <p>国際通貨基金（IMF）は、アメリカ経済に関する報告書を発表しました。その中で、アメリカが他国に対する経済的な立場（<span class="glossary-term" data-title="ある国が、外国に対してどれだけの資産（投資や貯蓄など）を持っていて、逆にどれだけの負債（借金など）を抱えているかを示す経済状況のことです。このポジションが「弱い」とは、外国に対する負債が増えている状態などを指します。">対外ポジション</span>）を弱めていると指摘しながらも、アメリカドルが依然として世界経済の中心的な通貨として非常に重要な役割を担っていることを強調しています。これは、アメリカの経済状況が変化しても、ドルが世界の金融システムに与える影響は大きいままであることを示しています。</p>
+                </div>
+                <div class="news-card">
+                    <h3><a href="https://news.google.com/rss/articles/CBMia0FVX3lxTFBuRTVaczh0ek1iT3JyQl9kcmNpd2ctSXNBTnBrX3loSGZoWGtWLUFVYUZrNURnNFdubk5oSjhYc2NhdFY0TnV0X1cyUUhBbWpfaHFuM2JHV1hKX19abHpaWlotcFB5bncyU09V?oc=5" target="_blank">au Starlink Direct、世界初の海外ローミング接続を開始 - KDDI ニュースルーム</a></h3>
+                    <p>KDDIが、宇宙にある人工衛星を利用して、携帯電話が直接通信できる「au Starlink Direct to Cell」サービスを海外で接続することに成功しました。
+これは、地上に基地局がない場所でも、携帯電話が直接衛星とつながり、電話やメッセージを送受信できる「海外<span class="glossary-term" data-title="契約している通信会社以外の通信会社の設備や、異なる通信方式の設備を利用して、電話やインターネット接続を行うことです。特に「海外ローミング」は、海外旅行中に自分の携帯電話をそのまま利用できるサービスを指します。">ローミング接続</span>」を実現した世界初の事例です。
+この技術により、これまで電波が届かなかった山間部や海上、災害時などでも、緊急時の通信手段が確保できるようになることが期待されます。</p>
+                </div></div><div id="ビジネス" class="category-section" style="display:none;">
+                <div class="news-card">
+                    <h3><a href="https://news.google.com/rss/articles/CBMikgFBVV95cUxPYXpUaDdsVVNVcWdTVzEtTi04REtrUnRPd01fTWVpWDdaZldZMHVzRnhoT1ZTSjVjRkZuVk5rb2hOZnRLSTRPaGpJYlJaRnQ5aWRtVzdfTzVFNkNfSW5hWEdpT1hoLWphLS1RYU91aF9keElRRWVXTkpxRlU2VmFsUEdXVEVWeTRJVloyVFZXR0Z2dw?oc=5" target="_blank">ＷＢＳ(ＢＳテレ東、2026/3/4 23:00 OA)の番組情報ページ - tv-tokyo.co.jp</a></h3>
+                    <p><span class="glossary-term" data-title="ある国や地域の金融システム全体を管理し、通貨の価値を安定させる役割を持つ機関のことです。日本では日本銀行がこれにあたります。">中央銀行</span>は、物価が持続的に上昇するインフレーションを抑えるため、基準となる<span class="glossary-term" data-title="<span class="glossary-term" data-title="ある国や地域の金融システム全体を管理し、通貨の価値を安定させる役割を持つ機関のことです。日本では日本銀行がこれにあたります。">中央銀行</span>が物価の安定や経済の調整のために設定する、金融市場の基準となる金利のことです。この金利が、銀行の貸し出し金利などに影響を与えます。">政策金利</span>の引き上げを決定しました。この利上げによって、企業がお金を借りて新しい事業を始める際のコストや、皆さんが将来家を購入する際の住宅ローンの金利などが上がる可能性があります。今回の決定が、今後の経済全体の動きにどのような影響を与えるか、引き続き注目されています。</p>
+                </div>
+                <div class="news-card">
+                    <h3><a href="https://news.google.com/rss/articles/CBMiY0FVX3lxTE02WVhzcENfaXg3TEtudjlfSzdNX3ROSTJZZWJUQ1d3WGk2TVdsQU1RTzVsSjIteWlOREQ1R3lVcE5ZbzFZS0JtVzh6dnBMSFFxQVdMTnZ6ZEZVVDNaa3l4dTdGZw?oc=5" target="_blank">東京円、157円台後半 - nippon.com</a></h3>
+                    <p>本日の東京<span class="glossary-term" data-title="世界中の通貨が売買される市場のことで、銀行や企業などが参加し、為替レートが常に変動しています。東京外国為替市場はその主要な拠点の一つです。">外国為替市場</span>では、円が対ドルで1ドル＝157円台後半で取引されました。これは円の価値が他の通貨、特にドルに対して低い「<span class="glossary-term" data-title="自国の通貨（円）の価値が、外国の通貨（ドルなど）に対して下がることです。これにより、同じ金額のドルを買うのに、より多くの円が必要になります。">円安</span>」の状態が続いていることを示しています。<span class="glossary-term" data-title="自国の通貨（円）の価値が、外国の通貨（ドルなど）に対して下がることです。これにより、同じ金額のドルを買うのに、より多くの円が必要になります。">円安</span>が進むと、海外からの輸入品の価格が上がるなど、私たちの生活にも影響を及ぼす可能性があります。</p>
+                </div></div><div id="テクノロジー" class="category-section" style="display:none;">
+                <div class="news-card">
+                    <h3><a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTFBVXzZsRm1nX3hoYVlaZE42aWs3aGdRNmthZVUtb1RjQ3VpNXhRWkxxZXlBZW5uQzBQeUdVYVlfeGxjcE9QaVc4Z0ZiblZFLXMxVGc5MjMtazFVTktlYk1fY2tEdWMtQVYw?oc=5" target="_blank">リコーとライズ・コンサルティング・グループ、AI利活用を支援する合弁会社を6月に設立 - マイナビニュース</a></h3>
+                    <p>複合機などを手掛けるリコーと、経営戦略の相談に乗るライズ・<span class="glossary-term" data-title="企業などが抱える悩みや課題に対し、専門家が解決策を考え、アドバイスしたり実行をサポートしたりする業務のことです。">コンサルティング</span>・グループは、<span class="glossary-term" data-title="人間の脳のように学習したり判断したりするコンピューター技術のことです。例えば、チャットボットや自動運転技術などに使われています。">AI（人工知能）</span>の<span class="glossary-term" data-title="あるものや技術を、単に使うだけでなく、最大限に活かして効果的に役立てることです。例えば、AIの能力をビジネスに深く取り入れることを指します。">利活用</span>を専門とする<span class="glossary-term" data-title="複数の会社が協力し、お金を出し合って共同で設立する会社のことです。それぞれの会社の得意なことを持ち寄って新しい事業を始めます。">合弁会社</span>を6月に設立します。
+この新会社は、企業がAI技術を事業に導入し、最大限に活用できるよう支援することが目的です。
+多くの企業がAIを効果的に使えるようサポートすることで、業務の効率化や新たなビジネスチャンスの創出に貢献することを目指します。</p>
+                </div>
+                <div class="news-card">
+                    <h3><a href="https://news.google.com/rss/articles/CBMiZ0FVX3lxTE4tazRKYTlHWnhGeHhvRWZJM053bHVaaExPZ1NMdjNnTm5aeHZOTlNXNVdIbW5jdm5zRzFkS0lDRVRPeUJ4b3c1NUVEYXUwS0lkQlNyYUgxOEpKZy1xQVphZmZNY0ZPeWM?oc=5" target="_blank">新連載「歌うテックニュース」スタート。AIが作った歌と解説画像でNVIDIAの歴史を学ぼう（西川善司） - テクノエッジ TechnoEdge</a></h3>
+                    <p>テクノエッジというウェブメディアで、<span class="glossary-term" data-title="機械が人間のように学習し、推論し、問題を解決する能力を持つ技術のことです。近年、画像生成や音声認識など幅広い分野で活用されています。">AI（人工知能）</span>が作った歌と解説画像を用いて企業の歴史を学ぶ新連載「歌うテックニュース」が始まりました。この連載では、特に高性能な<span class="glossary-term" data-title="電気を通したり通さなかったりする性質を持つ物質で、コンピューターやスマートフォンなどの電子機器の頭脳となる集積回路（ICチップ）を作るのに不可欠な材料や部品です。">半導体</span>を開発するNVIDIA社の歴史を、歌と視覚的な情報を通して楽しく学ぶことができます。AI技術を活用することで、複雑な情報を分かりやすく、そして魅力的に伝える新しい試みです。</p>
+                </div></div><div id="教育・科学" class="category-section" style="display:none;">
+                <div class="news-card">
+                    <h3><a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE5sLS1yZEpmTXpCVWNzRUVIYURqT2JtQ2lUVjZrcjlrTzN3Smh6STVPajB5ZHhqbmRUR0N0NndyTjdsTkZoU3ZBRTFydHEzeVNpeXdlcjM5dDVROUowVjJj?oc=5" target="_blank">情報データ科学部第2回データ分析ハッカソン成果発表会開催 - nagasaki-u.ac.jp</a></h3>
+                    <p>長崎大学の情報<span class="glossary-term" data-title="統計学、コンピュータ科学、人工知能などの知識を組み合わせて、大量のデータから新たな知見や価値を生み出し、社会課題の解決やビジネスに役立てることを目指す学問分野です。">データ科学</span>部が、<span class="glossary-term" data-title="大量の情報（データ）の中から、統計的な手法やコンピュータ技術を使って、意味のあるパターンや傾向、隠れた関係性などを見つけ出す作業のことです。">データ分析</span>の技術を競い合う「<span class="glossary-term" data-title="プログラマーやデザイナーなどがチームを組み、与えられたテーマに対して短期間で集中的にアイデアを出し、プログラミングや開発を行い、その成果を競い合うイベントのことです。">ハッカソン</span>」を開催し、その成果を発表しました。学生たちは与えられたデータから社会や地域の課題を見つけ出し、プログラミングや分析を通じて解決策を提案しました。この成果発表会では、学生たちがチームで取り組んだ独創的なアイデアや分析結果が披露されました。</p>
+                </div>
+                <div class="news-card">
+                    <h3><a href="https://news.google.com/rss/articles/CBMicEFVX3lxTE5kZGhtOVZIY2VXX205U1A2cXg2aXY1WEFhVFgxTmtoZWFhaFJjQ1UtN3VmUXBaREM2R256Z0tDTk9KTlVzMGR5U1RWWnduNDBITVFvUTBoUzdlc3hMWXZYZ2kxajJ1eTA0Y19ERE1ZS2s?oc=5" target="_blank">2027年度 横浜市立大学 国際教養学部・国際商学部・データサイエンス学部の新カリキュラムについて - yokohama-cu.ac.jp</a></h3>
+                    <p>横浜市立大学は2027年度に、国際教養学部、国際商学部、<span class="glossary-term" data-title="統計学や情報科学、人工知能などの知識や技術を用いて、膨大なデータから新たな知見や価値を発見し、問題解決に役立てる学問分野のことです。">データサイエンス</span>学部において新しい<span class="glossary-term" data-title="学校や大学などの教育機関で、何を、どのように学ぶかという教育内容や、その順序などを定めた計画のことです。">カリキュラム</span>を開始します。これは、社会の<span class="glossary-term" data-title="経済、文化、情報などが国境を越えて世界中で一体化し、人々の暮らしや社会のつながりが地球規模で強まる現象のことです。">グローバル化</span>や情報化に対応するため、各学部で専門性と<span class="glossary-term" data-title="複数の異なる学問分野や専門領域の知識・視点を組み合わせて、研究や教育を行うことです。一つの分野だけでは解決できない複雑な問題に対応するために重要とされます。">学際性</span>を高める教育内容へと刷新するものです。この変更により、学生は現代社会で活躍するためのより実践的な学びを深めることができます。</p>
+                </div></div>
 </body>
 </html>
